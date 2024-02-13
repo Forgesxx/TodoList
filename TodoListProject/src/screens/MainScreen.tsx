@@ -3,21 +3,30 @@ import { StyleSheet, TextInput, View, Text, TouchableOpacity} from "react-native
 import { FlatList } from "react-native-gesture-handler";
 
 
-
+interface LineItem {
+    id: string;
+    content: string;
+  }
 
 
 const MainScreen = () => {
     const [inputText, setInputText] = useState(''); 
-    const [lines, setLines] = useState<string[]>([]);
+    const [lines, setLines] = useState<any[]>([]);
 
-    const hadleInputText = (inputText: string) =>{
+    const hadleInputText = (inputText: any) =>{
         setInputText(inputText)
     } 
   
     const handleButtonPress = () => {
-        setLines([...lines, inputText]);
-        setInputText('');
-      };
+        const newLine: LineItem = {
+            id: String(lines.length + 1),
+            content: inputText,
+        };
+        setInputText(''); 
+        setLines([...lines, newLine]);
+    };
+    
+      
     
 
   
@@ -27,23 +36,20 @@ const MainScreen = () => {
     return(
 <View>
 
-<FlatList
+        <FlatList
         data={lines}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <Text>{item}</Text>}
-      />
- 
- 
-    <TextInput style={styles.textInput} value={inputText} onChangeText={hadleInputText} >
-
-    </TextInput>
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View key={item.id} style={styles.lineItem}>
+            <Text>{item.content}</Text>
+          </View>
+        )}
+        />
+    <View style={styles.inputContainer}>
+        <TextInput style={styles.textInput} value={inputText} onChangeText={hadleInputText} />    
+        <TouchableOpacity style={styles.addButton} onPress={handleButtonPress} />
+    </View>    
     
-    
-    <TouchableOpacity style={styles.addButton} onPress={handleButtonPress} >
-        <Text> 
-
-        </Text>
-    </TouchableOpacity>
 </View>  
   )
 }
@@ -57,14 +63,33 @@ const styles = StyleSheet.create({
     textInput:{
         color: "white",
         backgroundColor: 'black',
-        borderRadius: 15
+        borderRadius: 15,
+        width: 400
 
     },
-    addButton:{
+    addButton: {
         backgroundColor: 'blue',
-        padding: 5,
-        borderRadius:100,
+        borderRadius: 100,
         width: 30,
+        height: 30, 
+        marginTop: 10
     },
+    lineItem:{
+        backgroundColor: '#ACE8EB',
+        borderRadius: 20,
+        height: 40,
+        marginBottom: 10,
+        justifyContent: 'center', 
+        alignItems: 'center',
+       
+
+    },
+    inputContainer: {
+       
+        position: 'absolute',
+        marginTop: 530
+
+    },
+    
    
 })

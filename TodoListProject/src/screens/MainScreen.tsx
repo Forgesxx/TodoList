@@ -52,7 +52,7 @@ const MainScreen = () => {
     
     
     return(
-<View>
+<View >
 
         <FlatList
         data={lines}
@@ -69,8 +69,21 @@ const MainScreen = () => {
         )}
         />
     <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} value={inputText} onChangeText={hadleInputText} />    
-        <TouchableOpacity style={styles.addButton} onPress={handleButtonPress} />
+        <TextInput 
+        style={styles.textInput} 
+        value={inputText} 
+        onChangeText={hadleInputText} 
+        placeholder="Write here"   
+            
+            > 
+        
+          </TextInput>  
+        <TouchableOpacity style={styles.addButton} onPress={handleButtonPress}  > 
+        <Image
+            source={require('../Images/add.png')}
+                style={{ width: 20, height: 20 }}
+        />
+        </TouchableOpacity>
     </View>  
     
     
@@ -83,20 +96,27 @@ export default MainScreen
 const styles = StyleSheet.create({
     mainContainer:{
 
+        
     },
     textInput:{
-        color: "white",
-        backgroundColor: 'black',
+        color: "black",
+        backgroundColor: '#AED5F5',
         borderRadius: 15,
-        width: 400
+        width: 375,
+        flex: 1,
+        padding: 10
 
     },
     addButton: {
-        backgroundColor: 'blue',
+        backgroundColor: '#7EADD4',
         borderRadius: 100,
-        width: 30,
-        height: 30, 
-        marginTop: 10
+        width: 50,
+        height: 50, 
+        marginTop: 1,
+        marginLeft: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+        
     },
     lineItem:{
         backgroundColor: '#ACE8EB',
@@ -111,14 +131,17 @@ const styles = StyleSheet.create({
 
     },
     inputContainer: {
-       
+       flexDirection: 'row',
         position: 'absolute',
-        marginTop: 530
+        marginTop: 575,
+        alignItems: 'center',
+        color: 'black'
 
     },
-    deleteButton: {
     
-    },
+    placeholder:{
+
+    }
  
     
    

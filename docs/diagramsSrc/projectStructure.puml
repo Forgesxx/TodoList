@@ -1,0 +1,9 @@
+@startuml ProjectStructure
+
+node "React Native App" as react
+node "Web Server" as server
+node "Database" as db
+react - server
+server - db
+
+@enduml

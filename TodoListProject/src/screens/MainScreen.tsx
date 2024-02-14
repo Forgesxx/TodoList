@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, View, Text, TouchableOpacity} from "react-native";
+import { StyleSheet, TextInput, View, Text, TouchableOpacity, Alert} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
 
@@ -18,6 +18,12 @@ const MainScreen = () => {
     } 
   
     const handleButtonPress = () => {
+        if (inputText.trim() === '') {
+            Alert.alert('Error', 'The field must not be empty');
+            return;
+        }
+        
+        
         const newLine: LineItem = {
             id: String(lines.length + 1),
             content: inputText,
@@ -48,7 +54,8 @@ const MainScreen = () => {
     <View style={styles.inputContainer}>
         <TextInput style={styles.textInput} value={inputText} onChangeText={hadleInputText} />    
         <TouchableOpacity style={styles.addButton} onPress={handleButtonPress} />
-    </View>    
+    </View>  
+    
     
 </View>  
   )

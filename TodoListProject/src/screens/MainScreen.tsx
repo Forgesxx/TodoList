@@ -13,6 +13,10 @@ const MainScreen = () => {
     const [inputText, setInputText] = useState(''); 
     const [lines, setLines] = useState<any[]>([]);
 
+    const generateUniqueId = () => {
+        return Date.now().toString(36) + Math.random().toString(36);
+    };
+
 
     const handleDeleteItem = (id: any) => {
         const updatedLines = lines.filter(item => item.id !== id);
@@ -33,7 +37,7 @@ const MainScreen = () => {
         
         
         const newLine: LineItem = {
-            id: String(lines.length + 1),
+            id: generateUniqueId(),
             content: inputText,
         };
         setInputText(''); 

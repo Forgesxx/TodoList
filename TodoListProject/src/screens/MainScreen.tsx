@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, View, Text, TouchableOpacity, Alert} from "react-native";
+import { StyleSheet, TextInput, View, Text, TouchableOpacity, Alert, Image} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
 
@@ -13,6 +13,12 @@ const MainScreen = () => {
     const [inputText, setInputText] = useState(''); 
     const [lines, setLines] = useState<any[]>([]);
 
+
+    const handleDeleteItem = (id: any) => {
+        const updatedLines = lines.filter(item => item.id !== id);
+        setLines(updatedLines);
+      }
+
     const hadleInputText = (inputText: any) =>{
         setInputText(inputText)
     } 
@@ -22,6 +28,8 @@ const MainScreen = () => {
             Alert.alert('Error', 'The field must not be empty');
             return;
         }
+
+   
         
         
         const newLine: LineItem = {
@@ -48,6 +56,11 @@ const MainScreen = () => {
         renderItem={({ item }) => (
           <View key={item.id} style={styles.lineItem}>
             <Text>{item.content}</Text>
+            <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
+           <Image  source={require('../Images/cross.png')}
+            style={{ width: 20, height: 20 }}
+            ></Image>
+            </TouchableOpacity>
           </View>
         )}
         />
@@ -86,8 +99,10 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         height: 40,
         marginBottom: 10,
-        justifyContent: 'center', 
         alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20
        
 
     },
@@ -97,6 +112,10 @@ const styles = StyleSheet.create({
         marginTop: 530
 
     },
+    deleteButton: {
+    
+    },
+ 
     
    
 })

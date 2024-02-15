@@ -13,51 +13,42 @@ const MainScreen = () => {
     const [inputText, setInputText] = useState(''); 
     const [lines, setLines] = useState<any[]>([]);
     const [editingId, setEditingId] = useState<string | null>(null);
+ 
 
     const generateUniqueId = () => {
         return Date.now().toString(36) + Math.random().toString(36);
     };
-
-
-    const handleDeleteItem = (id: any) => {
+        const handleDeleteItem = (id: any) => {
         const updatedLines = lines.filter(item => item.id !== id);
         setLines(updatedLines);
       }
 
-    const hadleInputText = (inputText: any) =>{
-        setInputText(inputText)
-    } 
+      const hadleInputText = (inputText: any) => {
+        setInputText(inputText);
+    };
   
     const handleButtonPress = () => {
         if (inputText.trim() === '') {
             Alert.alert('Error', 'The field must not be empty');
             return;
         }
-    
-        if (editingId) {
-            const updatedLines = lines.map(item =>
+
+        if (editingId !== null) {
+            const updatedLines = lines.map((item) =>
                 item.id === editingId ? { ...item, content: inputText } : item
             );
             setLines(updatedLines);
             setEditingId(null);
+            setInputText('');
         } else {
             const newLine: LineItem = {
                 id: generateUniqueId(),
                 content: inputText,
             };
-            setInputText('');
             setLines([...lines, newLine]);
+            setInputText('');
         }
     };
-    
-    
-      
-    
-
-  
-    
-    
-    
     return(
 <View >
 
@@ -76,18 +67,25 @@ const MainScreen = () => {
                         ) : (
                             <Text>{item.content}</Text>
                         )}
+                        <View style={styles.ButtonsContainer}>
                         <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
                             <Image
                                 source={require('../Images/cross.png')}
-                                style={{ width: 20, height: 20 }}
+                                style={styles.deleteButton}
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => setEditingId(item.id)}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                setEditingId(item.id);
+                                setInputText(item.content);
+                            }}
+                        >
                             <Image
                                 source={require('../Images/edit.png')}
-                                style={{ width: 20, height: 20 }}
+                                style={styles.editButton}
                             />
                         </TouchableOpacity>
+                        </View>
                     </View>
                 )}
             />
@@ -148,9 +146,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 20
-       
-
+        paddingHorizontal: 20,
     },
     inputContainer: {
        flexDirection: 'row',
@@ -161,9 +157,19 @@ const styles = StyleSheet.create({
 
     },
     
-    placeholder:{
+    ButtonsContainer:{
+        flexDirection:'row',
+        margin: 5
 
-    }
+    },
+    editButton: {
+        marginRight: 10,
+        width: 20, height: 20
+    },
+    deleteButton: {
+        marginRight: 10, 
+        width: 20, height: 20
+    },
  
     
    

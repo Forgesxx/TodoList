@@ -12,6 +12,7 @@ interface LineItem {
 const MainScreen = () => {
     const [inputText, setInputText] = useState(''); 
     const [lines, setLines] = useState<any[]>([]);
+    const [editingId, setEditingId] = useState<string | null>(null);
 
     const generateUniqueId = () => {
         return Date.now().toString(36) + Math.random().toString(36);
@@ -32,17 +33,23 @@ const MainScreen = () => {
             Alert.alert('Error', 'The field must not be empty');
             return;
         }
-
-   
-        
-        
-        const newLine: LineItem = {
-            id: generateUniqueId(),
-            content: inputText,
-        };
-        setInputText(''); 
-        setLines([...lines, newLine]);
+    
+        if (editingId) {
+            const updatedLines = lines.map(item =>
+                item.id === editingId ? { ...item, content: inputText } : item
+            );
+            setLines(updatedLines);
+            setEditingId(null);
+        } else {
+            const newLine: LineItem = {
+                id: generateUniqueId(),
+                content: inputText,
+            };
+            setInputText('');
+            setLines([...lines, newLine]);
+        }
     };
+    
     
       
     
@@ -54,28 +61,43 @@ const MainScreen = () => {
     return(
 <View >
 
-        <FlatList
-        data={lines}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View key={item.id} style={styles.lineItem}>
-            <Text>{item.content}</Text>
-            <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
-           <Image  source={require('../Images/cross.png')}
-            style={{ width: 20, height: 20 }}
-            ></Image>
-            </TouchableOpacity>
-          </View>
-        )}
-        />
+<FlatList
+                data={lines}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <View key={item.id} style={styles.lineItem}>
+                        {editingId === item.id ? (
+                            <TextInput
+                                style={styles.textInput}
+                                value={inputText}
+                                onChangeText={hadleInputText}
+                                placeholder="Edit here"
+                            />
+                        ) : (
+                            <Text>{item.content}</Text>
+                        )}
+                        <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
+                            <Image
+                                source={require('../Images/cross.png')}
+                                style={{ width: 20, height: 20 }}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => setEditingId(item.id)}>
+                            <Image
+                                source={require('../Images/edit.png')}
+                                style={{ width: 20, height: 20 }}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                )}
+            />
     <View style={styles.inputContainer}>
         <TextInput 
         style={styles.textInput} 
         value={inputText} 
         onChangeText={hadleInputText} 
         placeholder="Write here"   
-            
-            > 
+        > 
         
           </TextInput>  
         <TouchableOpacity style={styles.addButton} onPress={handleButtonPress}  > 

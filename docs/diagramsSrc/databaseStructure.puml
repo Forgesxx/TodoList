@@ -1,0 +1,8 @@
+@startuml databaseStructure
+
+object items {
+    integer id;
+    string text;
+}
+
+@enduml

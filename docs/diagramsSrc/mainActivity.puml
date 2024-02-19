@@ -1,0 +1,49 @@
+@startuml mainActivity
+
+actor       User       as user
+participant Browser as browser
+participant WebServer as webServer
+database    Database    as db
+
+group opening the app
+    user -> browser : open app
+
+    browser -> webServer : GET "/index.js"
+    activate webServer
+    return index.js
+
+    activate browser
+        browser -> browser: index.js: load main screen
+
+        browser -> webServer: index.js: fetch /getAllItems
+        activate webServer
+            webServer -> db : select * from items;
+            activate db
+            return all items
+        return all items
+
+        browser -> browser: index.js: display all itmes
+
+        browser -> user : all items are displayed
+    deactivate browser
+end
+
+group add / remove / delete / modify
+
+    user -> browser : click button
+    browser -> browser : index.js : processing function
+    activate browser
+        browser -> webServer: fetch webAPI
+        activate webServer
+            webServer -> db : sql querry
+            activate db
+            return result
+            webServer -> browser : modifying result
+        deactivate webServer
+        browser -> browser : index.js : update view
+        browser -> user : updated view
+    deactivate browser
+
+end
+
+@enduml

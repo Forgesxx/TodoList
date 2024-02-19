@@ -1,0 +1,17 @@
+@startuml projectWorkflow
+
+start
+
+repeat
+
+    :Feature planning;
+
+    :Data structure developing;
+
+    :Web server developing;
+
+    :UI developing;
+
+repeat while (true)
+
+@enduml

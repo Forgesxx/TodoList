@@ -1,8 +1,8 @@
-@startuml ProjectStructure
+@startuml projectStructure
 
 node "React Native App" as react
 node "Web Server" as server
-node "Database" as db
+database "Database" as db
 react - server
 server - db
 

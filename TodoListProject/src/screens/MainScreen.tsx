@@ -13,6 +13,17 @@ const MainScreen = () => {
     const [inputText, setInputText] = useState(''); 
     const [lines, setLines] = useState<any[]>([]);
     const [editingId, setEditingId] = useState<string | null>(null);
+    const [isEditingMode, setIsEditingMode] = useState(false);
+
+    const handleAcceptEdit = (id: string) => {
+        const updatedLines = lines.map((item) =>
+            item.id === id ? { ...item, content: inputText } : item
+        );
+        setLines(updatedLines);
+        setEditingId(null);
+        setInputText('');
+        setIsEditingMode(false);
+    };
  
 
     const generateUniqueId = () => {
@@ -40,6 +51,7 @@ const MainScreen = () => {
             setLines(updatedLines);
             setEditingId(null);
             setInputText('');
+            setIsEditingMode(false);
         } else {
             const newLine: LineItem = {
                 id: generateUniqueId(),
@@ -59,34 +71,49 @@ const MainScreen = () => {
                     <View key={item.id} style={styles.lineItem}>
                         {editingId === item.id ? (
                             <TextInput
-                                style={styles.textInput}
+                                style={styles.textInputEdit}
                                 value={inputText}
                                 onChangeText={hadleInputText}
-                                placeholder="Edit here"
+                                defaultValue={inputText}
                             />
                         ) : (
                             <Text>{item.content}</Text>
                         )}
-                        <View style={styles.ButtonsContainer}>
-                        <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
+                        
+                        
+                        {isEditingMode && editingId === item.id ? (
+    <TouchableOpacity onPress={() => handleAcceptEdit(item.id)}>
+        <Image
+            source={require('../Images/acceptButton.png')} 
+            style={styles.acceptButton
+            }
+            
+        />
+    </TouchableOpacity>
+) : (
+    <View style={styles.ButtonsContainer}>
+    <TouchableOpacity
+        onPress={() => {
+            setEditingId(item.id);
+            setInputText(item.content);
+            setIsEditingMode(true);
+        }}
+    >
+        <Image
+            source={require('../Images/edit.png')}
+            style={styles.editButton}
+        />
+    </TouchableOpacity>
+    <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
                             <Image
                                 source={require('../Images/cross.png')}
                                 style={styles.deleteButton}
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => {
-                                setEditingId(item.id);
-                                setInputText(item.content);
-                            }}
-                        >
-                            <Image
-                                source={require('../Images/edit.png')}
-                                style={styles.editButton}
-                            />
-                        </TouchableOpacity>
+    </View>
+)}
                         </View>
-                    </View>
+                    
                 )}
             />
     <View style={styles.inputContainer}>
@@ -114,10 +141,23 @@ export default MainScreen
 
 
 const styles = StyleSheet.create({
+    
+    
+    
     mainContainer:{
 
         
+    
     },
+    textInputEdit:{
+        color: "black",
+        backgroundColor: '#ACE8EB',
+        borderRadius: 15,
+        width: 375,
+        flex: 1,
+        padding: 10
+    },
+
     textInput:{
         color: "black",
         backgroundColor: '#AED5F5',
@@ -169,6 +209,10 @@ const styles = StyleSheet.create({
     deleteButton: {
         marginRight: 10, 
         width: 20, height: 20
+    },
+    acceptButton:{
+        marginRight: 10, 
+        width: 30, height: 30
     },
  
     

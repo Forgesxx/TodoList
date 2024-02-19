@@ -141,13 +141,7 @@ export default MainScreen
 
 
 const styles = StyleSheet.create({
-    
-    
-    
     mainContainer:{
-
-        
-    
     },
     textInputEdit:{
         color: "black",

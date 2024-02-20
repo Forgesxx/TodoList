@@ -28,7 +28,7 @@ group opening the app
     deactivate browser
 end
 
-group add / remove / delete / modify
+group add / delete / modify
 
     user -> browser : click button
     browser -> browser : index.js : processing function

@@ -4,23 +4,8 @@ module.exports = {
     ],
     globals:
     {
-        CustomPropertiesController: "readonly",
-        ClassificationControllerMessageRead: "readonly",
-        ClassificationControllerMessageCompose: "readonly",
-        ClassificationControllerAppointment: "readonly",
-        Office: "readonly",
-        Agent: "readonly",
-        EwsHelper: "readonly",
-        ClassificationLabel: "readonly",
-        DOMParser: "readonly",
-        MailboxItemHelper: "readonly",
-        MimeParser: "readonly",
-        Validator: "readonly",
         describe: "readonly",
         it: "readonly",
-        jest: "readonly",
-        expect: "readonly",
-        test: "readonly",
     },
     rules:
     {

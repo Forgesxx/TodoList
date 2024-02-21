@@ -13,18 +13,48 @@
 // limitations under the License.
 
 'use strict';
-
+const sqlite3 = require('sqlite3').verbose();
 const express = require('express');
-
 const app = express();
 
-app.get('/',
-    (req, res) =>
-    {
-        res.status(200).send('Hello, world!').end();
-    });
+const db = new sqlite3.Database('contentUSER.db', (err) => {
+    if (err) {
+      console.error('Failed to connect to the database:', err.message);
+    } else {
+      console.log('Connection to the database is successful');
+    }
+  });
 
-// Start the server
+  db.run('CREATE TABLE IF NOT EXISTS content (id INTEGER PRIMARY KEY AUTOINCREMENT, item)');
+
+  app.use(express.json());
+
+  app.post('/content', (req, res) => {
+    const { item } = req.body;
+  
+    if (!item) {
+      return res.status(400).json({ error: 'Insufficient data to create content' });
+    }
+  
+    db.run('INSERT INTO content (item) VALUES (?)', [item], function (err) {
+      if (err) {
+        console.error('Error while executing the query:', err.message);
+        return res.status(500).send('Server error');
+      }
+  
+      console.log(`Content added to the database with id ${this.lastID}`);
+      res.json({ id: this.lastID, item });
+    });
+  });  
+
+
+app.get('/',
+(req, res) => {
+    res.status(200).send('Hello, world!').end();
+})
+
+//Start the server
+
 const PORT = parseInt(process.env.PORT) || 8080;
 
 app.listen(PORT,
@@ -33,5 +63,3 @@ app.listen(PORT,
         console.log(`App listening on port ${PORT}`);
         console.log('Press Ctrl+C to quit.');
     });
-
-module.exports = app;

@@ -29,11 +29,11 @@ const db = new sqlite3.Database('contentUSER.db', (err) => {
 
   app.use(express.json());
 
-  app.get('/content', (req, res) => {
+  app.get('/component', (req, res) => {
     db.all('SELECT * FROM content', (err, rows) => {
       if (err) {
         console.error('Error while executing the query:', err.message);
-        return res.status(500).send('Server error');
+        return res.status(500).json({ error: 'Internal Server Error', message: err.message });
       }
   
       res.json(rows);

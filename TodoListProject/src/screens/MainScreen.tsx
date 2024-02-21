@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, View, Text, TouchableOpacity, Alert, Image} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-
-
+import YourComponent from "../components/Components";
 interface LineItem {
     id: string;
     content: string;
@@ -63,6 +62,8 @@ const MainScreen = () => {
     };
     return(
 <View >
+<YourComponent></YourComponent>
+
 
 <FlatList
                 data={lines}

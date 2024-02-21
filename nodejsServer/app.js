@@ -29,6 +29,41 @@ const db = new sqlite3.Database('contentUSER.db', (err) => {
 
   app.use(express.json());
 
+  app.get('/content', (req, res) => {
+    db.all('SELECT * FROM content', (err, rows) => {
+      if (err) {
+        console.error('Error while executing the query:', err.message);
+        return res.status(500).send('Server error');
+      }
+  
+      res.json(rows);
+  
+      console.log('Content from the database:', rows);
+    });
+  });
+
+  app.delete('/content/:id', (req, res) => {
+    const itemId = req.params.id;
+  
+    if (!itemId) {
+      return res.status(400).json({ error: 'Missing ID parameter' });
+    }
+
+    db.run('DELETE FROM content WHERE id = ?', [itemId], function (err) {
+      if (err) {
+        console.error('Error while executing the query:', err.message);
+        return res.status(500).send('Server error');
+      }
+  
+      if (this.changes === 0) {
+        return res.status(404).json({ error: 'Item not found' });
+      }
+  
+      console.log(`Content with ID ${itemId} deleted from the database`);
+      res.status(200).json({ success: true });
+    });
+  });
+
   app.post('/content', (req, res) => {
     const { item } = req.body;
   

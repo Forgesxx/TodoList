@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+/* eslint-disable prettier/prettier */
+import React, {useState, useEffect} from 'react';
+import {View, Text} from 'react-native';
 
 interface Item {
   id: number;
@@ -17,6 +18,7 @@ const YourComponent: React.FC = () => {
         }
         return response.json();
       })
+      // eslint-disable-next-line @typescript-eslint/no-shadow
       .then((data: Item[] | undefined) => {
         if (data === undefined) {
           throw new Error('Received undefined data from the server');
@@ -26,7 +28,6 @@ const YourComponent: React.FC = () => {
       })
       .catch(error => console.error('Error fetching dataa:', error.message));
   }, []);
-
   return (
     <View>
       <Text>Data from Server:</Text>
@@ -36,5 +37,4 @@ const YourComponent: React.FC = () => {
     </View>
   );
 };
-
 export default YourComponent;

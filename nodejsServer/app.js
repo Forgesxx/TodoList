@@ -17,78 +17,85 @@ const sqlite3 = require('sqlite3').verbose();
 const express = require('express');
 const app = express();
 
-const db = new sqlite3.Database('contentUSER.db', (err) => {
-    if (err) {
-      console.error('Failed to connect to the database:', err.message);
-    } else {
-      console.log('Connection to the database is successful');
+const db = new sqlite3.Database('contentUSER.db', (err) =>
+{
+    if (err)
+    {
+        console.error('Failed to connect to the database:', err.message);
     }
-  });
+    else
+    {
+        console.log('Connection to the database is successful');
+    }
+});
 
-  db.run('CREATE TABLE IF NOT EXISTS content (id INTEGER PRIMARY KEY AUTOINCREMENT, item)');
+db.run('CREATE TABLE IF NOT EXISTS content (id INTEGER PRIMARY KEY AUTOINCREMENT, item)');
+app.use(express.json());
+app.get('/component', (req, res) =>
+{
+    db.all('SELECT * FROM content', (err, rows) =>
+    {
+        if (err)
+        {
+            console.error('Error while executing the query:', err.message);
+            return res.status(500).json({ error: 'Internal Server Error', message: err.message, });
+        }
+        res.json(rows);
 
-  app.use(express.json());
-
-  app.get('/component', (req, res) => {
-    db.all('SELECT * FROM content', (err, rows) => {
-      if (err) {
-        console.error('Error while executing the query:', err.message);
-        return res.status(500).json({ error: 'Internal Server Error', message: err.message });
-      }
-  
-      res.json(rows);
-  
-      console.log('Content from the database:', rows);
+        console.log('Content from the database:', rows);
     });
-  });
+});
 
-  app.delete('/content/:id', (req, res) => {
+app.delete('/content/:id', (req, res) =>
+{
     const itemId = req.params.id;
-  
-    if (!itemId) {
-      return res.status(400).json({ error: 'Missing ID parameter' });
+    if (!itemId)
+    {
+        return res.status(400).json({ error: 'Missing ID parameter', });
     }
 
-    db.run('DELETE FROM content WHERE id = ?', [itemId], function (err) {
-      if (err) {
-        console.error('Error while executing the query:', err.message);
-        return res.status(500).send('Server error');
-      }
-  
-      if (this.changes === 0) {
-        return res.status(404).json({ error: 'Item not found' });
-      }
-  
-      console.log(`Content with ID ${itemId} deleted from the database`);
-      res.status(200).json({ success: true });
-    });
-  });
+    db.run('DELETE FROM content WHERE id = ?', [itemId,], function (err)
+    {
+        if (err)
+        {
+            console.error('Error while executing the query:', err.message);
+            return res.status(500).send('Server error');
+        }
+        if (this.changes === 0)
+        {
+            return res.status(404).json({ error: 'Item not found', });
+        }
 
-  app.post('/content', (req, res) => {
-    const { item } = req.body;
-  
-    if (!item) {
-      return res.status(400).json({ error: 'Insufficient data to create content' });
+        console.log(`Content with ID ${itemId} deleted from the database`);
+        res.status(200).json({ success: true, });
+    });
+});
+
+app.post('/content', (req, res) =>
+{
+    const { item, } = req.body;
+    if (!item)
+    {
+        return res.status(400).json({ error: 'Insufficient data to create content', });
     }
-  
-    db.run('INSERT INTO content (item) VALUES (?)', [item], function (err) {
-      if (err) {
-        console.error('Error while executing the query:', err.message);
-        return res.status(500).send('Server error');
-      }
-  
-      console.log(`Content added to the database with id ${this.lastID}`);
-      res.json({ id: this.lastID, item });
-    });
-  });  
 
+    db.run('INSERT INTO content (item) VALUES (?)', [item,], function (err)
+    {
+        if (err)
+        {
+            console.error('Error while executing the query:', err.message);
+            return res.status(500).send('Server error');
+        }
+        console.log(`Content added to the database with id ${this.lastID}`);
+        res.json({ id: this.lastID, item, });
+    });
+});
 
 app.get('/',
-(req, res) => {
-    res.status(200).send('Hello, world!').end();
-})
-
-//Start the server
+    (req, res) =>
+    {
+        res.status(200).send('Hello, world!').end();
+    });
 
 const PORT = parseInt(process.env.PORT) || 8080;
 

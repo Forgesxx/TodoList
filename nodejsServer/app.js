@@ -14,10 +14,11 @@
 
 'use strict';
 const sqlite3 = require('sqlite3').verbose();
+const cors = require('cors');
 const express = require('express');
 const app = express();
 const sqlCommands = require('./sqlcommands.js');
-
+app.use(cors());
 const db = new sqlite3.Database('contentUSER.db', (err) =>
 {
     if (err)

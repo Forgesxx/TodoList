@@ -10,9 +10,10 @@ import {
   Image,
 } from 'react-native';
 import {styles} from './styles'
-const GetAllItems = 'http://192.168.0.156:8080/getAllItems';
+const GetAllItemsUrl = 'http://192.168.0.156:8080/getAllItems';
 const deleteUrl = 'http://192.168.0.156:8080/deleteItem';
 const AddItemUrl = 'http://192.168.0.156:8080/addItem';
+const ChangeItemTextUrl = 'http://192.168.0.156:8080/setItem'
 interface LineItem {
   id: string;
   content: string;
@@ -28,11 +29,12 @@ const MainScreen = () => {
   const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [originalItemText, setOriginalItemText] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(GetAllItems, {
+        const response = await fetch(GetAllItemsUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -88,7 +90,10 @@ const MainScreen = () => {
 
   const hadleInputText = (inputText: any) => {
     setInputText(inputText);
+    setOriginalItemText(inputText);
   };
+
+  
 
   const handleButtonPress = async () => {
     if (inputText.trim() === '') {
@@ -110,7 +115,7 @@ const MainScreen = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      const fetchDataResponse = await fetch(GetAllItems, {
+      const fetchDataResponse = await fetch(GetAllItemsUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -125,52 +130,92 @@ const MainScreen = () => {
       console.error('Error sending data:', error.message);
     }
   };
+  const handleEditItem = (id: number) => {
+    const itemToEdit = data.find(item => item.id === id);
+    if (itemToEdit) {
+      setOriginalItemText(itemToEdit.item);
+      setEditingId(id);  
+      setIsEditingMode(true);  
+    }
+  };
+
+  const handleUpdateItem = async () => {
+    if (editingId === null || inputText.trim() === '') {
+      Alert.alert('Error', 'Invalid input for update');
+      return;
+    }
+
+    try {
+      const response = await fetch(ChangeItemTextUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: editingId,
+          newContent: inputText,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const updatedData = data.map(item =>
+        item.id === editingId ? { ...item, item: inputText } : item
+      );
+
+      setData(updatedData);
+      setEditingId(null);
+      setIsEditingMode(false);
+      setInputText('');
+    } catch (error) {
+      console.error('Error updating item:', error.message);
+    }
+  };
+
   return (
     <View>
-<View>
-  {data.map(item => (
-    <View style={styles.lineItem} key={item.id}>
-      {editingId === item.id ? (
-        <TextInput
-          style={styles.textInputEdit}
-          value={inputText}
-          onChangeText={hadleInputText}
-          defaultValue={inputText}
-        />
-      ) : (
-        <Text>{item.item}</Text>
-      )}
+      <View>
+        {data.map(item => (
+          <View style={styles.lineItem} key={item.id}>
+            {editingId === item.id ? (
+              <TextInput
+                style={styles.textInputEdit}
+                value={originalItemText}
+                onChangeText={hadleInputText}
+              />
+            ) : (
+              <Text>{item.item}</Text>
+            )}
 
-      {isEditingMode && editingId === item.id ? (
-        <TouchableOpacity>
-          <Image
-            source={require('../Images/acceptButton.png')}
-            style={styles.acceptButton}
-          />
-        </TouchableOpacity>
-      ) : (
-        <View style={styles.ButtonsContainer}>
-          <TouchableOpacity
-            onPress={() => {
+            {isEditingMode && editingId === item.id ? (
+              <TouchableOpacity onPress={handleUpdateItem}>
+                <Image
+                  source={require('../Images/acceptButton.png')}
+                  style={styles.acceptButton}
+                />
+              </TouchableOpacity>
+            ) : (
+              <View style={styles.ButtonsContainer}>
+                <TouchableOpacity onPress={() => handleEditItem(item.id)}>
+                  <Image
+                    source={require('../Images/edit.png')}
+                    style={styles.editButton}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
+                  <Image
+                    source={require('../Images/cross.png')}
+                    style={styles.deleteButton}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
+          </View>
+        ))}
+      </View>
 
-            }}>
-            <Image
-              source={require('../Images/edit.png')}
-              style={styles.editButton}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
-            <Image
-              source={require('../Images/cross.png')}
-              style={styles.deleteButton}
-            />
-          </TouchableOpacity>
-        </View>
-      )}
-    </View>
-  ))}
-</View>
-    
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
@@ -187,7 +232,7 @@ const MainScreen = () => {
       </View>
     </View>
   );
-};
+};;
 export default MainScreen;
 
 

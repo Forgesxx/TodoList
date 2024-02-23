@@ -9,9 +9,9 @@ import {
   Alert,
   Image,
 } from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
 const GetAllItems = 'http://192.168.0.156:8080/getAllItems';
 const deleteUrl = 'http://192.168.0.156:8080/deleteItem';
+const AddItemUrl = 'http://192.168.0.156:8080/addItem';
 interface LineItem {
   id: string;
   content: string;
@@ -22,7 +22,6 @@ interface Item {
   }
 const MainScreen = () => {
   const [inputText, setInputText] = useState('');
-  const [lines, setLines] = useState<any[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isEditingMode, setIsEditingMode] = useState(false);
   const [data, setData] = useState<Item[]>([]);
@@ -62,22 +61,6 @@ const MainScreen = () => {
   if (error) {
     return <Text>Error: {error.message}</Text>;
   }
-
-
-
-  const handleAcceptEdit = (id: string) => {
-    const updatedLines = lines.map(item =>
-      item.id === id ? {...item, content: inputText} : item,
-    );
-    setLines(updatedLines);
-    setEditingId(null);
-    setInputText('');
-    setIsEditingMode(false);
-  };
-
-  const generateUniqueId = () => {
-    return Date.now().toString(36) + Math.random().toString(36);
-  };
   const handleDeleteItem = async (id: number) => {
     try {
       const response = await fetch(deleteUrl , {
@@ -106,33 +89,44 @@ const MainScreen = () => {
     setInputText(inputText);
   };
 
-  const handleButtonPress = () => {
+  const handleButtonPress = async () => {
     if (inputText.trim() === '') {
       Alert.alert('Error', 'The field must not be empty');
       return;
     }
-
-    if (editingId !== null) {
-      const updatedLines = lines.map(item =>
-        item.id === editingId ? {...item, content: inputText} : item,
-      );
-      setLines(updatedLines);
-      setEditingId(null);
+  
+    try {
+      const response = await fetch(AddItemUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          item: inputText,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const fetchDataResponse = await fetch(GetAllItems, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      const updatedData = await fetchDataResponse.json();
+      setData(updatedData);
+  
       setInputText('');
-      setIsEditingMode(false);
-    } else {
-      const newLine: LineItem = {
-        id: generateUniqueId(),
-        content: inputText,
-      };
-      setLines([...lines, newLine]);
-      setInputText('');
+    } catch (error) {
+      console.error('Error sending data:', error.message);
     }
   };
   return (
     <View>
 <View>
-  <Text>Data from Server:</Text>
   {data.map(item => (
     <View style={styles.lineItem} key={item.id}>
       {editingId === item.id ? (
@@ -175,55 +169,7 @@ const MainScreen = () => {
     </View>
   ))}
 </View>
-
-
-      <FlatList
-        data={lines}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => (
-          <View key={item.id} style={styles.lineItem}>
-            {editingId === item.id ? (
-              <TextInput
-                style={styles.textInputEdit}
-                value={inputText}
-                onChangeText={hadleInputText}
-                defaultValue={inputText}
-              />
-            ) : (
-              <Text>{item.content}</Text>
-            )}
-
-            {isEditingMode && editingId === item.id ? (
-              <TouchableOpacity onPress={() => handleAcceptEdit(item.id)}>
-                <Image
-                  source={require('../Images/acceptButton.png')}
-                  style={styles.acceptButton}
-                />
-              </TouchableOpacity>
-            ) : (
-              <View style={styles.ButtonsContainer}>
-                <TouchableOpacity
-                  onPress={() => {
-                    setEditingId(item.id);
-                    setInputText(item.content);
-                    setIsEditingMode(true);
-                  }}>
-                  <Image
-                    source={require('../Images/edit.png')}
-                    style={styles.editButton}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
-                  <Image
-                    source={require('../Images/cross.png')}
-                    style={styles.deleteButton}
-                  />
-                </TouchableOpacity>
-              </View>
-            )}
-          </View>
-        )}
-      />
+    
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
@@ -243,6 +189,8 @@ const MainScreen = () => {
 };
 export default MainScreen;
 
+
+
 const styles = StyleSheet.create({
   mainContainer: {},
   textInputEdit: {
@@ -253,7 +201,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
-
   textInput: {
     color: 'black',
     backgroundColor: '#AED5F5',
@@ -289,7 +236,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: 'black',
   },
-
   ButtonsContainer: {
     flexDirection: 'row',
     margin: 5,

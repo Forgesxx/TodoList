@@ -21,7 +21,7 @@ interface ApiConfig {
         const result = await response.json();
         return result;
       } catch (error) {
-        console.error(`Error when retrieving data from: ${endpoint}:`, error);
+        console.error(`Error when retrieving data from ${endpoint}:`, error);
         throw error;
       }
     }

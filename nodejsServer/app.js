@@ -18,7 +18,9 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 const sqlCommands = require('./sqlcommands.js');
+
 app.use(cors());
+
 const db = new sqlite3.Database('contentUSER.db', (err) =>
 {
     if (err)
@@ -31,83 +33,106 @@ const db = new sqlite3.Database('contentUSER.db', (err) =>
     }
 });
 
-function handleError(errorMessage, err, res) {
+function handleError(errorMessage, err, res)
+{
     console.error(errorMessage, err.message);
-    res.status(500).json({ error: 'Internal Server Error', message: err.message });
-  }
+    res.status(500).json({ error: 'Internal Server Error', message: err.message, });
+}
 
 db.run(sqlCommands.createTable);
 app.use(express.json());
-app.post('/getAllItems', (req, res) => {
-    db.all(sqlCommands.selectAll, (err, rows) => {
-      if (err) {
-        handleError('Error while executing the query:', err, res);
-        return;
-      }
-      res.json(rows);
-      console.log('Content from the database:', rows);
+app.post('/getAllItems',
+    (req, res) =>
+    {
+        db.all(sqlCommands.selectAll,
+            (err, rows) =>
+            {
+                if (err)
+                {
+                    handleError('Error while executing the query:', err, res);
+                    return;
+                }
+                res.json(rows);
+                console.log('Content from the database:', rows);
+            });
     });
-  });
 
-  app.post('/deleteItem', (req, res) => {
-    const { ids } = req.body;
-    if (!ids || !Array.isArray(ids)) {
-      res.status(400).json({ error: 'Invalid input format, expected array of ids' });
-      return;
-    }
-    const placeholders = ids.map(() => '?').join(', ');
-    const deleteQuery = `DELETE FROM content WHERE id IN (${placeholders})`;
-  
-    db.run(deleteQuery, ids, function (err) {
-      if (err) {
-        handleError('Error while executing the query:', err, res);
-        return;
-      }
-  
-      console.log(`Items with IDs ${ids.join(', ')} deleted from the database`);
-      res.status(200).json({ success: true });
-    });
-  });
-  app.post('/addItem', (req, res) => {
-    const { item } = req.body;
-  
-    if (!item) {
-      res.status(400).json({ error: 'Invalid input format, expected item' });
-      return;
-    }
-  
-  
-    db.run(sqlCommands.insertContent, [item], function (err) {
-      if (err) {
-        handleError('Error while executing the query:', err, res);
-        return;
-      }
-  
-      console.log(`Content added to the database with id ${this.lastID}`);
-      res.status(200).json({ id: this.lastID });
-    });
-  });
+app.post('/deleteItem',
+    (req, res) =>
+    {
+        const { ids, } = req.body;
+        if (!ids || !Array.isArray(ids))
+        {
+            res.status(400).json({ error: 'Invalid input format, expected array of ids', });
+            return;
+        }
+        const placeholders = ids.map(() => '?').join(', ');
+        const deleteQuery = `DELETE FROM content WHERE id IN (${placeholders})`;
 
+        db.run(deleteQuery, ids,
+            function (err)
+            {
+                if (err)
+                {
+                    handleError('Error while executing the query:', err, res);
+                    return;
+                }
 
-  app.post('/setItem', (req, res) => {
-    const { id, newContent } = req.body;
-    if (!id || newContent === undefined) {
-      res.status(400).json({ error: 'Invalid input format, expected id and newContent' });
-      return;
-    }
-  
-    const updateQuery = 'UPDATE content SET item = ? WHERE id = ?';
-  
-    db.run(updateQuery, [newContent, id], function (err) {
-      if (err) {
-        handleError('Error while executing the query:', err, res);
-        return;
-      }
-  
-      console.log(`Content for item with ID ${id} updated in the database`);
-      res.status(200).json({ success: true });
+                console.log(`Items with IDs ${ids.join(', ')} deleted from the database`);
+                res.status(200).json({ success: true, });
+            });
     });
-  });
+
+app.post('/addItem',
+    (req, res) =>
+    {
+        const { item, } = req.body;
+
+        if (!item)
+        {
+            res.status(400).json({ error: 'Invalid input format, expected item', });
+            return;
+        }
+
+        db.run(sqlCommands.insertContent, [item,],
+            function (err)
+            {
+                if (err)
+                {
+                    handleError('Error while executing the query:', err, res);
+                    return;
+                }
+
+                console.log(`Content added to the database with id ${this.lastID}`);
+                res.status(200).json({ id: this.lastID, });
+            });
+    });
+
+app.post('/setItem',
+    (req, res) =>
+    {
+        const { id, newContent, } = req.body;
+        if (!id || newContent === undefined)
+        {
+            res.status(400).json({ error: 'Invalid input format, expected id and newContent', });
+            return;
+        }
+
+        const updateQuery = 'UPDATE content SET item = ? WHERE id = ?';
+
+        db.run(updateQuery, [newContent, id,],
+            function (err)
+            {
+                if (err)
+                {
+                    handleError('Error while executing the query:', err, res);
+                    return;
+                }
+
+                console.log(`Content for item with ID ${id} updated in the database`);
+                res.status(200).json({ success: true, });
+            });
+    });
 
 app.get('/',
     (req, res) =>

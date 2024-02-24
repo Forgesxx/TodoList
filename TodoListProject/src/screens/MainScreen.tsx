@@ -10,123 +10,68 @@ import {
   Image,
 } from 'react-native';
 import {styles} from './styles'
-const GetAllItemsUrl = 'http://192.168.0.156:8080/getAllItems';
-const deleteUrl = 'http://192.168.0.156:8080/deleteItem';
-const AddItemUrl = 'http://192.168.0.156:8080/addItem';
-const ChangeItemTextUrl = 'http://192.168.0.156:8080/setItem'
-interface LineItem {
-  id: string;
-  content: string;
-}
 interface Item {
     id: number;
     item: string;
   }
+  import ApiService from './apiServise';
 const MainScreen = () => {
   const [inputText, setInputText] = useState('');
-  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<number | null>(null);
   const [isEditingMode, setIsEditingMode] = useState(false);
   const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [originalItemText, setOriginalItemText] = useState('');
-
+  const apiService = new ApiService('http://192.168.0.156:8080');
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(GetAllItemsUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        const result = await response.json();
-
+        const result = await apiService.getAllItems();
         if (result.length > 0) {
           setData(result);
         }
-
         setLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         console.error('Error fetching data:', error);
         setError(error);
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
-
   if (loading) {
     return <Text>Loading...</Text>;
   }
 
   if (error) {
     return <Text>Error: {error.message}</Text>;
-  }
+  };
   const handleDeleteItem = async (id: number) => {
     try {
-      const response = await fetch(deleteUrl , {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ids: [id],
-        }),
-      });
+      await apiService.deleteItem(id);
   
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
       const updatedData = data.filter(item => item.id !== id);
       setData(updatedData);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deleting item:', error.message);
     }
   };
-  
-
   const hadleInputText = (inputText: any) => {
     setInputText(inputText);
     setOriginalItemText(inputText);
   };
-
-  
-
   const handleButtonPress = async () => {
     if (inputText.trim() === '') {
       Alert.alert('Error', 'The field must not be empty');
       return;
     }
-  
     try {
-      const response = await fetch(AddItemUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          item: inputText,
-        }),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const fetchDataResponse = await fetch(GetAllItemsUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      const updatedData = await fetchDataResponse.json();
+      await apiService.addItem(inputText);
+      const updatedData = await apiService.getAllItems();
       setData(updatedData);
-  
       setInputText('');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending data:', error.message);
     }
   };
@@ -138,42 +83,25 @@ const MainScreen = () => {
       setIsEditingMode(true);  
     }
   };
-
   const handleUpdateItem = async () => {
     if (editingId === null || inputText.trim() === '') {
       Alert.alert('Error', 'Invalid input for update');
       return;
     }
-
     try {
-      const response = await fetch(ChangeItemTextUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: editingId,
-          newContent: inputText,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
+      await apiService.changeItemText(editingId, inputText);
+  
       const updatedData = data.map(item =>
         item.id === editingId ? { ...item, item: inputText } : item
       );
-
       setData(updatedData);
       setEditingId(null);
       setIsEditingMode(false);
       setInputText('');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating item:', error.message);
     }
   };
-
   return (
     <View>
       <View>
@@ -234,6 +162,3 @@ const MainScreen = () => {
   );
 };;
 export default MainScreen;
-
-
-

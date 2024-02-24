@@ -8,6 +8,8 @@ module.exports = {
         it: "readonly",
         test: "readonly",
         expect: "readonly",
+        beforeAll: "readonly",
+        afterAll: "readonly",
     },
     rules:
     {

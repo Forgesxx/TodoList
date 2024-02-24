@@ -33,6 +33,7 @@ class DBController
         if (DBController.instance != null)
         {
             await DBController.instance.close();
+            DBController.instance = null;
         }
     }
 

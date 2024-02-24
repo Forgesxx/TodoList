@@ -1,4 +1,10 @@
 const sqlCommands = {
+    createTable: `
+      CREATE TABLE IF NOT EXISTS content (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        item TEXT
+      );
+    `,
 
     selectAll: `
       SELECT * FROM content;

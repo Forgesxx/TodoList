@@ -1,3 +1,4 @@
 package-lock.json
 nodejsServer/node_modules
 contentUSER.db
+nodejsServer/coverage

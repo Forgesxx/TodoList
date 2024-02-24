@@ -6,6 +6,8 @@ module.exports = {
     {
         describe: "readonly",
         it: "readonly",
+        test: "readonly",
+        expect: "readonly",
     },
     rules:
     {

@@ -1,22 +1,35 @@
-const app = require('../app');
+const app = require('../src/app');
 const request = require('supertest');
 
-describe('gae_flex_quickstart',
+describe("Simple GET test",
     () =>
     {
-        describe('GET /',
+        test("It should response the GET method",
             () =>
             {
-                it('should get 200',
-                    done =>
-                    {
-                        request(app).get('/').expect(200, done);
-                    });
-
-                it('should get Hello World',
-                    done =>
-                    {
-                        request(app).get('/').expect('Hello, world!', done);
-                    });
+                return request(app)
+                    .get("/")
+                    .then(
+                        response =>
+                        {
+                            expect(response.statusCode).toBe(200);
+                            expect(response.text).toBe("Hello, world!");
+                        });
             });
     });
+
+// describe('GET /',
+//     () =>
+//     {
+//         test('should get 200',
+//             done =>
+//             {
+//                 request(app).get('/').expect(200, done);
+//             });
+
+//         test('should get Hello World',
+//             done =>
+//             {
+//                 request(app).get('/').expect('Hello, world!', done);
+//             });
+//     });

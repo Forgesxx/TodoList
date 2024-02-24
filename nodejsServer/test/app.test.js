@@ -29,46 +29,34 @@ test("GET /",
                 });
     });
 
-describe('get empty',
-    () =>
+test('get empty',
+    async function()
     {
-        it('get empty',
-            async function()
-            {
-                const response = await request(app)
-                    .post(apiURIs.getAllItems);
-                expect(response.status).toEqual(200);
-                expect(response.body.length).toBe(0);
-            });
+        const response = await request(app)
+            .post(apiURIs.getAllItems);
+        expect(response.status).toEqual(200);
+        expect(response.body.length).toBe(0);
     });
 
-describe('add',
-    () =>
+test('add',
+    async () =>
     {
-        test('add',
-            async () =>
-            {
-                return request(app)
-                    .post(apiURIs.addItem)
-                    .send(["hello world",])
-                    .then(
-                        (res) =>
-                        {
-                            expect(res.statusCode).toBe(200);
-                            expect(res.body.id).toBe(1);
-                        });
-            });
+        return request(app)
+            .post(apiURIs.addItem)
+            .send(["hello world",])
+            .then(
+                (res) =>
+                {
+                    expect(res.statusCode).toBe(200);
+                    expect(res.body.id).toBe(1);
+                });
     });
 
-describe('get one',
-    () =>
+it('get one',
+    async function()
     {
-        it('get empty',
-            async function()
-            {
-                const response = await request(app)
-                    .post(apiURIs.getAllItems);
-                expect(response.status).toEqual(200);
-                expect(response.body.length).toBe(1);
-            });
+        const response = await request(app)
+            .post(apiURIs.getAllItems);
+        expect(response.status).toEqual(200);
+        expect(response.body.length).toBe(1);
     });

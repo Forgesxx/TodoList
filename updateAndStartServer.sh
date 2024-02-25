@@ -4,4 +4,4 @@ git pull;
 
 cd nodejsServer;
 
-npm start;
+npm run startPort80;

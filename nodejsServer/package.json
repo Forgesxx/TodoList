@@ -8,6 +8,7 @@
     "scripts": 
     {
         "start": "node ./src/server.js",
+        "startPort80": "PORT=80 node ./src/server.js",
         "startWithMemoryDB": "DB_NAME=:memory: node ./src/server.js",
         "test": "jest --runInBand"
     },

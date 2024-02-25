@@ -9,9 +9,26 @@ sudo apt-get install npm
 
 cd nodejsServer/
 
-npm install
+sudo npm install
 
 # Ensure that http traffic is allowed on server
-# Ensure that needed port is allowed. It is 8080 by default, or add other port is needed.
+
+cd /etc/systemd/system/
+
+sudo touch forgesxx.service
+
+sudo nano forgesxx.service
+
+-----
+[Unit]
+Description=forgesxx service.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/danil_korotenko/TodoList/updateAndStartServer.sh
+
+[Install]
+WantedBy=multi-user.target
+----
 
 ```

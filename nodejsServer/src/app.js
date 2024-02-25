@@ -35,48 +35,33 @@ app.post(apiURIs.addItem,
     {
         try
         {
-            const dbController = await DBController.getInstance();
             const items = req.body;
             if (items.length === 0)
             {
-                throw new Error("Empty add item is not allowed.");
+                res.status(200).json([]);
+                return;
             }
-            const itemText = items[0];
 
-            const rows = await dbController.addItem(itemText);
-            res.status(200).json(rows);
+            const dbController = await DBController.getInstance();
+
+            const result = [];
+
+            for (let i = 0; i < items.length; i++)
+            {
+                const itemText = items[i];
+                const item = await dbController.addItem(itemText); // expect { id: <item-id> }
+                item.item = itemText;
+                result.push(item);
+            }
+
+            res.status(200).json(result);
         }
         catch(error)
         {
-            console.log("Error on getAllItems: " + JSON.stringify(error));
+            console.log("Error on addItem: " + JSON.stringify(error));
             res.status(500).json({ error: error, });
         }
     });
-
-// app.post('/addItem',
-//     (req, res) =>
-//     {
-//         const { item, } = req.body;
-
-//         if (!item)
-//         {
-//             res.status(400).json({ error: 'Invalid input format, expected item', });
-//             return;
-//         }
-
-//         db.run(sqlCommands.insertContent, [item,],
-//             function (err)
-//             {
-//                 if (err)
-//                 {
-//                     handleError('Error while executing the query:', err, res);
-//                     return;
-//                 }
-
-//                 console.log(`Content added to the database with id ${this.lastID}`);
-//                 res.status(200).json({ id: this.lastID, });
-//             });
-//     });
 
 // app.post('/deleteItem',
 //     (req, res) =>

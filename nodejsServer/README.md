@@ -23,11 +23,18 @@ Input: none
 output: [ {...}, ...] 
 
 POST /addItem
-input: [ "<item text>", ] // must be only single item
+input: [ "<item text>", .... ] // array of items texts
 output: 
+    // array of new items 
     [ 
         {
-            id: <new-item-id>,
+            id: <item-id>,
+            item: "item-text"
         }, 
+        ....
     ]
+if input is empty array:
+    [  ]
+then output is also empty array:
+    [  ]
 ```

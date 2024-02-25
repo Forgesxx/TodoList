@@ -31,4 +31,11 @@ ExecStart=/bin/bash /home/danil_korotenko/TodoList/updateAndStartServer.sh
 WantedBy=multi-user.target
 ----
 
+chmod 644 forgesxx.service
+
+systemctl enable forgesxx.service
+
+systemctl start forgesxx.service
+
+
 ```

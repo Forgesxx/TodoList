@@ -23,11 +23,43 @@ Input: none
 output: [ {...}, ...] 
 
 POST /addItem
-input: [ "<item text>", ] // must be only single item
+input: [ "<item text>", .... ] // array of items texts
 output: 
+    // array of new items 
     [ 
         {
-            id: <new-item-id>,
+            id: <item-id>,
+            item: "item-text"
         }, 
+        ....
     ]
+if input is empty array:
+    [  ]
+then output is also empty array:
+    [  ]
+
+POST /setItem
+input: 
+    // array of items with new texts
+    [ 
+        {
+            id: <item-id>,
+            item: <new item text>
+        },
+        ....
+    ]
+output: 
+    200 OK                    // if success, and if input is empty
+    500 { error: <error>, }   // if fail
+
+POST /deleteItem
+input: 
+    // array of items ids
+    [ 
+        <item-id>, ...
+    ]
+output: 
+    200 OK                    // if success, and if input is empty
+    500 { error: <error>, }   // if fail
+
 ```

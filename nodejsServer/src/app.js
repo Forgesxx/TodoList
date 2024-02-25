@@ -8,12 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// function handleError(errorMessage, err, res)
-// {
-//     console.error(errorMessage, err.message);
-//     res.status(500).json({ error: 'Internal Server Error', message: err.message, });
-// }
-
 app.post(apiURIs.getAllItems,
     async (req, res) =>
     {
@@ -25,8 +19,8 @@ app.post(apiURIs.getAllItems,
         }
         catch(error)
         {
-            console.log("Error on getAllItems: " + JSON.stringify(error));
-            res.status(500).json({ error: error, });
+            console.log("Error on getAllItems: " + JSON.stringify(error.message));
+            res.status(500).json({ error: { message: error.message, }, });
         }
     });
 
@@ -35,100 +29,92 @@ app.post(apiURIs.addItem,
     {
         try
         {
-            const dbController = await DBController.getInstance();
             const items = req.body;
             if (items.length === 0)
             {
-                throw new Error("Empty add item is not allowed.");
+                res.status(200).json([]);
+                return;
             }
-            const itemText = items[0];
 
-            const rows = await dbController.addItem(itemText);
-            res.status(200).json(rows);
+            const dbController = await DBController.getInstance();
+
+            const result = [];
+
+            for (let i = 0; i < items.length; i++)
+            {
+                const itemText = items[i];
+                const item = await dbController.addItem(itemText); // expect result { id: <item-id> }
+                item.item = itemText;
+                result.push(item);
+            }
+
+            res.status(200).json(result);
         }
         catch(error)
         {
-            console.log("Error on getAllItems: " + JSON.stringify(error));
-            res.status(500).json({ error: error, });
+            console.log("Error on addItem: " + JSON.stringify(error.message));
+            res.status(500).json({ error: { message: error.message, }, });
         }
     });
 
-// app.post('/addItem',
-//     (req, res) =>
-//     {
-//         const { item, } = req.body;
+app.post(apiURIs.setItem,
+    async (req, res) =>
+    {
+        try
+        {
+            const items = req.body;
+            if (items.length === 0)
+            {
+                res.status(200).send();
+                return;
+            }
 
-//         if (!item)
-//         {
-//             res.status(400).json({ error: 'Invalid input format, expected item', });
-//             return;
-//         }
+            const dbController = await DBController.getInstance();
 
-//         db.run(sqlCommands.insertContent, [item,],
-//             function (err)
-//             {
-//                 if (err)
-//                 {
-//                     handleError('Error while executing the query:', err, res);
-//                     return;
-//                 }
+            for (let i = 0; i < items.length; i++)
+            {
+                const item = items[i];
+                await dbController.setItem(items[i]);
+            }
 
-//                 console.log(`Content added to the database with id ${this.lastID}`);
-//                 res.status(200).json({ id: this.lastID, });
-//             });
-//     });
+            res.status(200).send();
+        }
+        catch(error)
+        {
+            console.log("Error on setItem: " + JSON.stringify(error.message));
+            res.status(500).json({ error: { message: error.message, }, });
+        }
+    });
 
-// app.post('/deleteItem',
-//     (req, res) =>
-//     {
-//         const { ids, } = req.body;
-//         if (!ids || !Array.isArray(ids))
-//         {
-//             res.status(400).json({ error: 'Invalid input format, expected array of ids', });
-//             return;
-//         }
-//         const placeholders = ids.map(() => '?').join(', ');
-//         const deleteQuery = `DELETE FROM content WHERE id IN (${placeholders})`;
+app.post(apiURIs.deleteItem,
+    async (req, res) =>
+    {
+        try
+        {
+            const itemIds = req.body;
+            if (itemIds.length === 0)
+            {
+                res.status(200).send();
+                return;
+            }
 
-//         db.run(deleteQuery, ids,
-//             function (err)
-//             {
-//                 if (err)
-//                 {
-//                     handleError('Error while executing the query:', err, res);
-//                     return;
-//                 }
+            const dbController = await DBController.getInstance();
 
-//                 console.log(`Items with IDs ${ids.join(', ')} deleted from the database`);
-//                 res.status(200).json({ success: true, });
-//             });
-//     });
+            for (let i = 0; i < itemIds.length; i++)
+            {
+                const itemId = itemIds[i];
 
-// app.post('/setItem',
-//     (req, res) =>
-//     {
-//         const { id, newContent, } = req.body;
-//         if (!id || newContent === undefined)
-//         {
-//             res.status(400).json({ error: 'Invalid input format, expected id and newContent', });
-//             return;
-//         }
+                await dbController.deleteItem(itemId);
+            }
 
-//         const updateQuery = 'UPDATE content SET item = ? WHERE id = ?';
-
-//         db.run(updateQuery, [newContent, id,],
-//             function (err)
-//             {
-//                 if (err)
-//                 {
-//                     handleError('Error while executing the query:', err, res);
-//                     return;
-//                 }
-
-//                 console.log(`Content for item with ID ${id} updated in the database`);
-//                 res.status(200).json({ success: true, });
-//             });
-//     });
+            res.status(200).send();
+        }
+        catch(error)
+        {
+            console.log("Error on deleteItem: " + JSON.stringify(error.message));
+            res.status(500).json({ error: { message: error.message, }, });
+        }
+    });
 
 app.get('/',
     (req, res) =>

@@ -14,6 +14,12 @@ class DBController
     static addItemQuerry =
         `INSERT INTO content (item) VALUES (?);`;
 
+    static setItemQuerry =
+        `UPDATE content SET item = $item WHERE id = $id;`;
+
+    static deleteItemQuerry =
+        `DELETE FROM content WHERE id = $id;`;
+
     static instance = null;
 
     static async getInstance(aDbName)
@@ -141,6 +147,54 @@ class DBController
                         }
                         console.log('add item las id:', this.lastID);
                         resolve({ id: this.lastID, });
+                    });
+            });
+    }
+
+    async setItem(anItem)
+    {
+        return new Promise(
+            (resolve, reject) =>
+            {
+                if (anItem && anItem.id && anItem.item)
+                {
+                    this.db.run(DBController.setItemQuerry,
+                        {
+                            $id: anItem.id,
+                            $item: anItem.item,
+                        },
+                        function(err)
+                        {
+                            if (err)
+                            {
+                                reject(err);
+                            }
+                            resolve();
+                        });
+                }
+                else
+                {
+                    reject(new Error("Item is incorrect."));
+                }
+            });
+    }
+
+    async deleteItem(anItemId)
+    {
+        return new Promise(
+            (resolve, reject) =>
+            {
+                this.db.run(DBController.deleteItemQuerry,
+                    {
+                        $id: anItemId,
+                    },
+                    function(err)
+                    {
+                        if (err)
+                        {
+                            reject(err);
+                        }
+                        resolve();
                     });
             });
     }

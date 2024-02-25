@@ -8,12 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// function handleError(errorMessage, err, res)
-// {
-//     console.error(errorMessage, err.message);
-//     res.status(500).json({ error: 'Internal Server Error', message: err.message, });
-// }
-
 app.post(apiURIs.getAllItems,
     async (req, res) =>
     {
@@ -25,8 +19,8 @@ app.post(apiURIs.getAllItems,
         }
         catch(error)
         {
-            console.log("Error on getAllItems: " + JSON.stringify(error));
-            res.status(500).json({ error: error, });
+            console.log("Error on getAllItems: " + JSON.stringify(error.message));
+            res.status(500).json({ error: { message: error.message, }, });
         }
     });
 
@@ -49,7 +43,7 @@ app.post(apiURIs.addItem,
             for (let i = 0; i < items.length; i++)
             {
                 const itemText = items[i];
-                const item = await dbController.addItem(itemText); // expect { id: <item-id> }
+                const item = await dbController.addItem(itemText); // expect result { id: <item-id> }
                 item.item = itemText;
                 result.push(item);
             }
@@ -58,62 +52,69 @@ app.post(apiURIs.addItem,
         }
         catch(error)
         {
-            console.log("Error on addItem: " + JSON.stringify(error));
-            res.status(500).json({ error: error, });
+            console.log("Error on addItem: " + JSON.stringify(error.message));
+            res.status(500).json({ error: { message: error.message, }, });
         }
     });
 
-// app.post('/deleteItem',
-//     (req, res) =>
-//     {
-//         const { ids, } = req.body;
-//         if (!ids || !Array.isArray(ids))
-//         {
-//             res.status(400).json({ error: 'Invalid input format, expected array of ids', });
-//             return;
-//         }
-//         const placeholders = ids.map(() => '?').join(', ');
-//         const deleteQuery = `DELETE FROM content WHERE id IN (${placeholders})`;
+app.post(apiURIs.setItem,
+    async (req, res) =>
+    {
+        try
+        {
+            const items = req.body;
+            if (items.length === 0)
+            {
+                res.status(200).send();
+                return;
+            }
 
-//         db.run(deleteQuery, ids,
-//             function (err)
-//             {
-//                 if (err)
-//                 {
-//                     handleError('Error while executing the query:', err, res);
-//                     return;
-//                 }
+            const dbController = await DBController.getInstance();
 
-//                 console.log(`Items with IDs ${ids.join(', ')} deleted from the database`);
-//                 res.status(200).json({ success: true, });
-//             });
-//     });
+            for (let i = 0; i < items.length; i++)
+            {
+                const item = items[i];
+                await dbController.setItem(items[i]);
+            }
 
-// app.post('/setItem',
-//     (req, res) =>
-//     {
-//         const { id, newContent, } = req.body;
-//         if (!id || newContent === undefined)
-//         {
-//             res.status(400).json({ error: 'Invalid input format, expected id and newContent', });
-//             return;
-//         }
+            res.status(200).send();
+        }
+        catch(error)
+        {
+            console.log("Error on setItem: " + JSON.stringify(error.message));
+            res.status(500).json({ error: { message: error.message, }, });
+        }
+    });
 
-//         const updateQuery = 'UPDATE content SET item = ? WHERE id = ?';
+app.post(apiURIs.deleteItem,
+    async (req, res) =>
+    {
+        try
+        {
+            const itemIds = req.body;
+            if (itemIds.length === 0)
+            {
+                res.status(200).send();
+                return;
+            }
 
-//         db.run(updateQuery, [newContent, id,],
-//             function (err)
-//             {
-//                 if (err)
-//                 {
-//                     handleError('Error while executing the query:', err, res);
-//                     return;
-//                 }
+            const dbController = await DBController.getInstance();
 
-//                 console.log(`Content for item with ID ${id} updated in the database`);
-//                 res.status(200).json({ success: true, });
-//             });
-//     });
+            for (let i = 0; i < itemIds.length; i++)
+            {
+                const itemId = itemIds[i];
+
+                await dbController.deleteItem(itemId);
+            }
+
+            res.status(200).send();
+        }
+        catch(error)
+        {
+            console.log("Error on deleteItem: " + JSON.stringify(error.message));
+            res.status(500).json({ error: { message: error.message, }, });
+        }
+    });
 
 app.get('/',
     (req, res) =>

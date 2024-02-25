@@ -45,14 +45,20 @@ class DBController
 
     constructor(aDbName)
     {
-        if (!aDbName)
+        let dbName = aDbName;
+
+        if (!dbName)
         {
-            this.dbName = 'contentUSER.db';
+            dbName = process.env.DB_NAME;
         }
-        else
+
+        if (!dbName)
         {
-            this.dbName = aDbName;
+            dbName = 'contentUSER.db';
         }
+
+        this.dbName = dbName;
+
         this.db = null;
     }
 
@@ -66,8 +72,8 @@ class DBController
                     {
                         if (err)
                         {
-                            reject(err);
                             console.error('Failed to connect to the database:', err.message);
+                            reject(err);
                         }
                         else
                         {

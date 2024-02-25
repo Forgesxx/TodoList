@@ -8,8 +8,8 @@
     "scripts": 
     {
         "start": "node ./src/server.js",
-        "test": "jest --runInBand",
-        "dev": "nodemon ./src/app.js"
+        "startWithMemoryDB": "DB_NAME=:memory: node ./src/server.js",
+        "test": "jest --runInBand"
     },
     "dependencies": 
     {

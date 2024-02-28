@@ -9,7 +9,13 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "eslint": "^8.55.0",
+    "eslint-config-semistandard": "^17.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,11 +1,12 @@
-import React from "react"
-import { View } from "react-native"
-export const SecondScreen = () => {
-   
-    return(
-<View>
+import React from "react";
 
-</View>  
-  )
-}
-export default SecondScreen
+import { View, } from "react-native";
+
+export const SecondScreen = () =>
+{
+    return (
+        <View/>
+    );
+};
+
+export default SecondScreen;

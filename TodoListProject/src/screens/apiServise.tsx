@@ -25,18 +25,13 @@ class ApiService
         try
         {
             const response = await fetch(`${this.baseUrl}/${endpoint}`, config);
-            const body = response.body;
-            let result = null;
-            if (body)
-            {
-                result = await response.json();
-            }
+            const result = await response.json();
             return result;
         }
         catch(error: any)
         {
             console.error(`Error when retrieving data from ${endpoint}:`, error);
-            throw error;
+            return null;
         }
     }
 

@@ -38,7 +38,7 @@ const MainScreen = () =>
             try
             {
                 const result = await apiService.getAllItems();
-                if (result.length > 0)
+                if (result && result.length > 0)
                 {
                     setData(result);
                 }

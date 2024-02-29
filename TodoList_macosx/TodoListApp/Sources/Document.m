@@ -47,8 +47,6 @@
 
 - (void)awakeFromNib
 {
-    NSError *error = nil;
-
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
 
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
@@ -74,10 +72,13 @@
     NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:
         ^(NSData *data, NSURLResponse *response, NSError *error)
         {
-            NSError *err;
-            NSArray *responseData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-
+            if (!error)
+            {
+                NSError *err = nil;
+                NSArray *responseData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
                 NSLog(@"response: %@", responseData);
+
+            }
 
         }];
 

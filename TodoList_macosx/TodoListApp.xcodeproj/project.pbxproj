@@ -43,6 +43,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA9AD17F2B90DB6B000DF49F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DAA717AB2B9085F100BFE363 /* WebApi.h */,
+				DAA717AC2B9085F100BFE363 /* WebApi.m */,
+				DAA717A32B907A1E00BFE363 /* main.m */,
+				DAA717942B907A1D00BFE363 /* AppDelegate.h */,
+				DAA717952B907A1D00BFE363 /* AppDelegate.m */,
+				DAA717972B907A1D00BFE363 /* Document.h */,
+				DAA717982B907A1D00BFE363 /* Document.m */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		DA9AD1802B90DB89000DF49F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DAA7179A2B907A1D00BFE363 /* Document.xib */,
+				DAA7179D2B907A1E00BFE363 /* Assets.xcassets */,
+				DAA7179F2B907A1E00BFE363 /* MainMenu.xib */,
+				DAA717A22B907A1E00BFE363 /* Info.plist */,
+				DAA717A52B907A1E00BFE363 /* TodoListApp.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		DAA717882B907A1D00BFE363 = {
 			isa = PBXGroup;
 			children = (
@@ -62,18 +88,8 @@
 		DAA717932B907A1D00BFE363 /* TodoListApp */ = {
 			isa = PBXGroup;
 			children = (
-				DAA717942B907A1D00BFE363 /* AppDelegate.h */,
-				DAA717952B907A1D00BFE363 /* AppDelegate.m */,
-				DAA717972B907A1D00BFE363 /* Document.h */,
-				DAA717982B907A1D00BFE363 /* Document.m */,
-				DAA7179A2B907A1D00BFE363 /* Document.xib */,
-				DAA7179D2B907A1E00BFE363 /* Assets.xcassets */,
-				DAA7179F2B907A1E00BFE363 /* MainMenu.xib */,
-				DAA717A22B907A1E00BFE363 /* Info.plist */,
-				DAA717A32B907A1E00BFE363 /* main.m */,
-				DAA717A52B907A1E00BFE363 /* TodoListApp.entitlements */,
-				DAA717AB2B9085F100BFE363 /* WebApi.h */,
-				DAA717AC2B9085F100BFE363 /* WebApi.m */,
+				DA9AD1802B90DB89000DF49F /* Resources */,
+				DA9AD17F2B90DB6B000DF49F /* Sources */,
 			);
 			path = TodoListApp;
 			sourceTree = "<group>";
@@ -297,14 +313,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/TodoListApp/TodoListApp.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/TodoListApp/Resources/TodoListApp.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QBPW9LPK8E;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TodoListApp/Info.plist;
+				INFOPLIST_FILE = TodoListApp/Resources/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -324,14 +340,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/TodoListApp/TodoListApp.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/TodoListApp/Resources/TodoListApp.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QBPW9LPK8E;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TodoListApp/Info.plist;
+				INFOPLIST_FILE = TodoListApp/Resources/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

@@ -13,41 +13,76 @@
 
 @implementation Document
 
-- (instancetype)init {
+- (instancetype)init
+{
     self = [super init];
-    if (self) {
-        // Add your subclass-specific initialization here.
+    if (self)
+    {
     }
     return self;
 }
 
-+ (BOOL)autosavesInPlace {
++ (BOOL)autosavesInPlace
+{
     return YES;
 }
 
 
-- (NSString *)windowNibName {
-    // Override returning the nib file name of the document
-    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
+- (NSString *)windowNibName
+{
     return @"Document";
 }
 
-
-- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
-    // Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error if you return nil.
-    // Alternatively, you could remove this method and override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
+{
     [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
     return nil;
 }
 
-
-- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error if you return NO.
-    // Alternatively, you could remove this method and override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you do, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
+{
     [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
     return YES;
 }
 
+- (void)awakeFromNib
+{
+    NSError *error = nil;
+
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+
+    NSURL *url = [NSURL URLWithString:@"http://localhost:8080/getAllItems"];
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:60.0];
+
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+    [request setHTTPMethod:@"POST"];
+
+//    NSDictionary *mapData = [[NSDictionary alloc] initWithObjectsAndKeys: @"TEST IOS", @"name",
+//                     @"IOS TYPE", @"typemap",
+//                     nil];
+//NSData *postData = [NSJSONSerialization dataWithJSONObject:mapData options:0 error:&error];
+//[request setHTTPBody:postData];
+
+
+    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:
+        ^(NSData *data, NSURLResponse *response, NSError *error)
+        {
+            NSError *err;
+            NSArray *responseData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+
+                NSLog(@"response: %@", responseData);
+
+        }];
+
+[postDataTask resume];
+
+}
 
 @end

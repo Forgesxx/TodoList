@@ -13,6 +13,7 @@
 		DAA7179E2B907A1E00BFE363 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA7179D2B907A1E00BFE363 /* Assets.xcassets */; };
 		DAA717A12B907A1E00BFE363 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA7179F2B907A1E00BFE363 /* MainMenu.xib */; };
 		DAA717A42B907A1E00BFE363 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717A32B907A1E00BFE363 /* main.m */; };
+		DAA717AD2B9085F100BFE363 /* WebApi.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717AC2B9085F100BFE363 /* WebApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		DAA717A22B907A1E00BFE363 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAA717A32B907A1E00BFE363 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DAA717A52B907A1E00BFE363 /* TodoListApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodoListApp.entitlements; sourceTree = "<group>"; };
+		DAA717AB2B9085F100BFE363 /* WebApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebApi.h; sourceTree = "<group>"; };
+		DAA717AC2B9085F100BFE363 /* WebApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				DAA717A22B907A1E00BFE363 /* Info.plist */,
 				DAA717A32B907A1E00BFE363 /* main.m */,
 				DAA717A52B907A1E00BFE363 /* TodoListApp.entitlements */,
+				DAA717AB2B9085F100BFE363 /* WebApi.h */,
+				DAA717AC2B9085F100BFE363 /* WebApi.m */,
 			);
 			path = TodoListApp;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				DAA717992B907A1D00BFE363 /* Document.m in Sources */,
 				DAA717A42B907A1E00BFE363 /* main.m in Sources */,
 				DAA717962B907A1D00BFE363 /* AppDelegate.m in Sources */,
+				DAA717AD2B9085F100BFE363 /* WebApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +297,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = TodoListApp/TodoListApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/TodoListApp/TodoListApp.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -318,7 +324,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = TodoListApp/TodoListApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/TodoListApp/TodoListApp.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

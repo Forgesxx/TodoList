@@ -11,6 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WebApi : NSObject
 
++ (WebApi *)shared;
+
+- (void)getAllItemsWithCompletionHandler:
+    (void (^)(NSArray * _Nullable allItems, NSError * _Nullable error))completionHandler;
+
 @end
 
 NS_ASSUME_NONNULL_END

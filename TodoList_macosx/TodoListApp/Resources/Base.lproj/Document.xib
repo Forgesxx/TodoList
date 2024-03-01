@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document">
             <connections>
+                <outlet property="allItemsTable" destination="N1e-AF-0w2" id="nGI-IQ-CM8"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -101,6 +102,10 @@
                                             </prototypeCellViews>
                                         </tableColumn>
                                     </tableColumns>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-2" id="EiN-Bd-3Fb"/>
+                                        <outlet property="delegate" destination="-2" id="u53-cf-xgS"/>
+                                    </connections>
                                 </tableView>
                             </subviews>
                         </clipView>

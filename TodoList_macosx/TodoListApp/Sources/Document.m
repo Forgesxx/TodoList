@@ -6,8 +6,11 @@
 //
 
 #import "Document.h"
+#import "WebApi.h"
 
 @interface Document ()
+
+@property (strong) IBOutlet NSTableView *allItemsTable;
 
 @end
 
@@ -47,42 +50,27 @@
 
 - (void)awakeFromNib
 {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [self updateUI];
+}
 
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+#pragma mark -
 
-    NSURL *url = [NSURL URLWithString:@"http://localhost:8080/getAllItems"];
-
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                   timeoutInterval:60.0];
-
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-
-    [request setHTTPMethod:@"POST"];
-
-//    NSDictionary *mapData = [[NSDictionary alloc] initWithObjectsAndKeys: @"TEST IOS", @"name",
-//                     @"IOS TYPE", @"typemap",
-//                     nil];
-//NSData *postData = [NSJSONSerialization dataWithJSONObject:mapData options:0 error:&error];
-//[request setHTTPBody:postData];
-
-
-    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:
-        ^(NSData *data, NSURLResponse *response, NSError *error)
+- (void)updateUI
+{
+    [[WebApi shared] getAllItemsWithCompletionHandler:
+        ^(NSArray * _Nullable allItems, NSError * _Nullable error)
         {
-            if (!error)
+            if (error)
             {
-                NSError *err = nil;
-                NSArray *responseData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-                NSLog(@"response: %@", responseData);
-
+                //TODO: represent error
+                return;
             }
 
-        }];
+            if (allItems)
+            {
 
-[postDataTask resume];
+            }
+        }];
 
 }
 

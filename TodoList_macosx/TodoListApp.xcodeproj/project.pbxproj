@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA42A2632B91DBF5002E15D8 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42A2622B91DBF5002E15D8 /* Preferences.m */; };
+		DA42A2652B91DE14002E15D8 /* servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA42A2642B91DE14002E15D8 /* servers.plist */; };
 		DAA717962B907A1D00BFE363 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717952B907A1D00BFE363 /* AppDelegate.m */; };
 		DAA717992B907A1D00BFE363 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717982B907A1D00BFE363 /* Document.m */; };
 		DAA7179C2B907A1D00BFE363 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA7179A2B907A1D00BFE363 /* Document.xib */; };
@@ -17,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA42A2612B91DBF5002E15D8 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
+		DA42A2622B91DBF5002E15D8 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
+		DA42A2642B91DE14002E15D8 /* servers.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = servers.plist; sourceTree = "<group>"; };
 		DAA717912B907A1D00BFE363 /* TodoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA717942B907A1D00BFE363 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DAA717952B907A1D00BFE363 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -46,13 +51,15 @@
 		DA9AD17F2B90DB6B000DF49F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				DAA717AB2B9085F100BFE363 /* WebApi.h */,
-				DAA717AC2B9085F100BFE363 /* WebApi.m */,
-				DAA717A32B907A1E00BFE363 /* main.m */,
 				DAA717942B907A1D00BFE363 /* AppDelegate.h */,
 				DAA717952B907A1D00BFE363 /* AppDelegate.m */,
 				DAA717972B907A1D00BFE363 /* Document.h */,
 				DAA717982B907A1D00BFE363 /* Document.m */,
+				DAA717A32B907A1E00BFE363 /* main.m */,
+				DA42A2612B91DBF5002E15D8 /* Preferences.h */,
+				DA42A2622B91DBF5002E15D8 /* Preferences.m */,
+				DAA717AB2B9085F100BFE363 /* WebApi.h */,
+				DAA717AC2B9085F100BFE363 /* WebApi.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -65,6 +72,7 @@
 				DAA7179F2B907A1E00BFE363 /* MainMenu.xib */,
 				DAA717A22B907A1E00BFE363 /* Info.plist */,
 				DAA717A52B907A1E00BFE363 /* TodoListApp.entitlements */,
+				DA42A2642B91DE14002E15D8 /* servers.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -152,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAA7179E2B907A1E00BFE363 /* Assets.xcassets in Resources */,
+				DA42A2652B91DE14002E15D8 /* servers.plist in Resources */,
 				DAA7179C2B907A1D00BFE363 /* Document.xib in Resources */,
 				DAA717A12B907A1E00BFE363 /* MainMenu.xib in Resources */,
 			);
@@ -164,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA42A2632B91DBF5002E15D8 /* Preferences.m in Sources */,
 				DAA717992B907A1D00BFE363 /* Document.m in Sources */,
 				DAA717A42B907A1E00BFE363 /* main.m in Sources */,
 				DAA717962B907A1D00BFE363 /* AppDelegate.m in Sources */,

@@ -14,7 +14,8 @@
 
 @property (strong) IBOutlet NSTableView *allItemsTable;
 
-@property (strong) NSArray *allItems;
+@property (readwrite) NSArray *allItems;
+@property (strong) NSMutableArray *allItemViews;
 
 @property (strong) NSTimer *updateTimer;
 
@@ -25,12 +26,15 @@
     dispatch_queue_t _serverQueue;
 }
 
+@synthesize allItems;
+
 - (instancetype)init
 {
     self = [super init];
     if (self)
     {
         _serverQueue = dispatch_queue_create("TodoList.server.queue", DISPATCH_QUEUE_SERIAL);
+        self.allItemViews = [NSMutableArray array];
     }
     return self;
 }
@@ -84,20 +88,36 @@
                 }
 
                 self.allItems = allItems;
-
-                dispatch_async(dispatch_get_main_queue(),
-                ^{
-                    NSIndexSet *selectedRows = self.allItemsTable.selectedRowIndexes;
-                    [self.allItemsTable reloadData];
-                    if (self.allItems.count > selectedRows.lastIndex)
-                    {
-                        [self.allItemsTable selectRowIndexes:selectedRows byExtendingSelection:NO];
-                    }
-                });
             }];
     });
 }
 
+- (NSArray *)allItems
+{
+    return allItems;
+}
+
+- (void)setAllItems:(NSArray *)anAllItems
+{
+    if (![allItems isEqualToArray:anAllItems])
+    {
+        allItems = anAllItems;
+        [self updateTable];
+    }
+}
+
+ - (void)updateTable
+ {
+    dispatch_async(dispatch_get_main_queue(),
+    ^{
+        NSIndexSet *selectedRows = self.allItemsTable.selectedRowIndexes;
+        [self.allItemsTable reloadData];
+        if (self.allItems.count > selectedRows.lastIndex)
+        {
+            [self.allItemsTable selectRowIndexes:selectedRows byExtendingSelection:NO];
+        }
+    });
+ }
 #pragma mark TableView datasource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView NS_SWIFT_UI_ACTOR
@@ -107,10 +127,19 @@
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    Item *item = [Item itemWithDictionary:[self.allItems objectAtIndex:row]];
+    NSTableCellView *tableCellView = nil;
 
-    NSTableCellView *tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
-    tableCellView.textField.stringValue = item.text;
+    if (row < self.allItemViews.count)
+    {
+        tableCellView = [self.allItemViews objectAtIndex:row];
+    }
+    else
+    {
+        Item *item = [Item itemWithDictionary:[self.allItems objectAtIndex:row]];
+        tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
+        tableCellView.textField.stringValue = item.text;
+        [self.allItemViews addObject:tableCellView];
+    }
 
     return tableCellView;
 }

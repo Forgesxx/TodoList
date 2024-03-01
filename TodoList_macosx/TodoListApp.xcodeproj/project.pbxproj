@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DA42A2632B91DBF5002E15D8 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42A2622B91DBF5002E15D8 /* Preferences.m */; };
 		DA42A2652B91DE14002E15D8 /* servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA42A2642B91DE14002E15D8 /* servers.plist */; };
+		DA7150282B920CD100813F34 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7150272B920CD100813F34 /* Item.m */; };
 		DAA717962B907A1D00BFE363 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717952B907A1D00BFE363 /* AppDelegate.m */; };
 		DAA717992B907A1D00BFE363 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717982B907A1D00BFE363 /* Document.m */; };
 		DAA7179C2B907A1D00BFE363 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA7179A2B907A1D00BFE363 /* Document.xib */; };
@@ -22,6 +23,8 @@
 		DA42A2612B91DBF5002E15D8 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
 		DA42A2622B91DBF5002E15D8 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 		DA42A2642B91DE14002E15D8 /* servers.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = servers.plist; sourceTree = "<group>"; };
+		DA7150262B920CD100813F34 /* Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		DA7150272B920CD100813F34 /* Item.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		DAA717912B907A1D00BFE363 /* TodoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA717942B907A1D00BFE363 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DAA717952B907A1D00BFE363 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,6 +63,8 @@
 				DA42A2622B91DBF5002E15D8 /* Preferences.m */,
 				DAA717AB2B9085F100BFE363 /* WebApi.h */,
 				DAA717AC2B9085F100BFE363 /* WebApi.m */,
+				DA7150262B920CD100813F34 /* Item.h */,
+				DA7150272B920CD100813F34 /* Item.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA7150282B920CD100813F34 /* Item.m in Sources */,
 				DA42A2632B91DBF5002E15D8 /* Preferences.m in Sources */,
 				DAA717992B907A1D00BFE363 /* Document.m in Sources */,
 				DAA717A42B907A1E00BFE363 /* main.m in Sources */,

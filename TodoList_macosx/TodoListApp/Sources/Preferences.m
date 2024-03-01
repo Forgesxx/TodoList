@@ -11,8 +11,10 @@ NSString *const CurrentServerDidChangeNotification = @"CurrentServerDidChangeNot
 
 static NSString * const kServersFileName = @"servers";
 
-static NSString * const kCurrentServer = @"currentServer";
+static NSString * const kCurrentServer = @"current";
 static NSString * const kServers = @"servers";
+
+static NSString * const kUpdateInterval = @"updateInterval";
 
 @interface Preferences ()
 
@@ -43,7 +45,7 @@ static NSString * const kServers = @"servers";
     {
         if (self.currentServer == nil)
         {
-            self.currentServer = [servers objectForKey:kCurrentServer];
+            self.currentServer = [NSURL URLWithString:[servers objectForKey:kCurrentServer]];
         }
 
         NSArray *serversURLs = [servers objectForKey:kServers];
@@ -113,6 +115,23 @@ static NSString * const kServers = @"servers";
 - (void)setServers:(NSArray *)aServers
 {
     return [[NSUserDefaults standardUserDefaults] setObject:aServers forKey:kServers];
+}
+
+#pragma mark -
+
+- (NSTimeInterval)updateInterval
+{
+    CGFloat updateInterval = [[NSUserDefaults standardUserDefaults] floatForKey:kUpdateInterval];
+    if (updateInterval == 0)
+    {
+        updateInterval = 5;
+    }
+    return updateInterval;
+}
+
+- (void)setUpdateInterval:(NSTimeInterval)updateInterval
+{
+    [[NSUserDefaults standardUserDefaults] setFloat:updateInterval forKey:kUpdateInterval];
 }
 
 #pragma mark -

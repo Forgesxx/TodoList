@@ -19,6 +19,8 @@ extern NSString *const CurrentServerDidChangeNotification;
 @property (readwrite) NSURL *currentServer;
 @property (readwrite) NSArray *servers;
 
+@property (readwrite) NSTimeInterval updateInterval;
+
 - (void)clearSettings;
 
 @end

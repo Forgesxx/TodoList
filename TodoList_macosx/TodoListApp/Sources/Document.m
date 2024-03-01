@@ -9,6 +9,7 @@
 #import "WebApi.h"
 #import "Preferences.h"
 #import "Item.h"
+#import "ItemTableCellView.h"
 
 @interface Document ()
 
@@ -63,6 +64,8 @@
 
 - (void)awakeFromNib
 {
+    [self.allItemsTable registerNib:[[NSNib alloc] initWithNibNamed:@"ItemTableCellView"
+        bundle:[NSBundle mainBundle]] forIdentifier:@"item"];
     [self updateItems];
 
     self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:[Preferences shared].updateInterval
@@ -127,7 +130,9 @@
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    NSTableCellView *tableCellView = nil;
+    ItemTableCellView *tableCellView = nil;
+
+    Item *item = [Item itemWithDictionary:[self.allItems objectAtIndex:row]];
 
     if (row < self.allItemViews.count)
     {
@@ -135,14 +140,28 @@
     }
     else
     {
-        Item *item = [Item itemWithDictionary:[self.allItems objectAtIndex:row]];
         tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
-        tableCellView.textField.stringValue = item.text;
+        tableCellView.delegate = self;
         [self.allItemViews addObject:tableCellView];
     }
+
+    [tableCellView representItem:item];
 
     return tableCellView;
 }
 
+#pragma mark -
+
+- (void)itemDidChange:(Item *)anItem
+{
+    [WebApi.shared setItem:anItem withCompletionHandler:
+        ^(NSError * _Nullable error)
+        {
+            if (error)
+            {
+                //TODO: represent error
+            }
+        }];
+}
 
 @end

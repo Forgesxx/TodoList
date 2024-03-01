@@ -10,6 +10,8 @@
 		DA42A2632B91DBF5002E15D8 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42A2622B91DBF5002E15D8 /* Preferences.m */; };
 		DA42A2652B91DE14002E15D8 /* servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA42A2642B91DE14002E15D8 /* servers.plist */; };
 		DA7150282B920CD100813F34 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7150272B920CD100813F34 /* Item.m */; };
+		DA71502F2B921D5500813F34 /* ItemTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71502D2B921D5500813F34 /* ItemTableCellView.m */; };
+		DA7150302B921D5500813F34 /* ItemTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA71502E2B921D5500813F34 /* ItemTableCellView.xib */; };
 		DAA717962B907A1D00BFE363 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717952B907A1D00BFE363 /* AppDelegate.m */; };
 		DAA717992B907A1D00BFE363 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717982B907A1D00BFE363 /* Document.m */; };
 		DAA7179C2B907A1D00BFE363 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA7179A2B907A1D00BFE363 /* Document.xib */; };
@@ -25,6 +27,9 @@
 		DA42A2642B91DE14002E15D8 /* servers.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = servers.plist; sourceTree = "<group>"; };
 		DA7150262B920CD100813F34 /* Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		DA7150272B920CD100813F34 /* Item.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		DA71502C2B921D5500813F34 /* ItemTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemTableCellView.h; sourceTree = "<group>"; };
+		DA71502D2B921D5500813F34 /* ItemTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemTableCellView.m; sourceTree = "<group>"; };
+		DA71502E2B921D5500813F34 /* ItemTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableCellView.xib; sourceTree = "<group>"; };
 		DAA717912B907A1D00BFE363 /* TodoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA717942B907A1D00BFE363 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DAA717952B907A1D00BFE363 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,6 +70,8 @@
 				DAA717AC2B9085F100BFE363 /* WebApi.m */,
 				DA7150262B920CD100813F34 /* Item.h */,
 				DA7150272B920CD100813F34 /* Item.m */,
+				DA71502C2B921D5500813F34 /* ItemTableCellView.h */,
+				DA71502D2B921D5500813F34 /* ItemTableCellView.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -72,12 +79,13 @@
 		DA9AD1802B90DB89000DF49F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DAA7179A2B907A1D00BFE363 /* Document.xib */,
 				DAA7179D2B907A1E00BFE363 /* Assets.xcassets */,
-				DAA7179F2B907A1E00BFE363 /* MainMenu.xib */,
+				DAA7179A2B907A1D00BFE363 /* Document.xib */,
 				DAA717A22B907A1E00BFE363 /* Info.plist */,
-				DAA717A52B907A1E00BFE363 /* TodoListApp.entitlements */,
+				DA71502E2B921D5500813F34 /* ItemTableCellView.xib */,
+				DAA7179F2B907A1E00BFE363 /* MainMenu.xib */,
 				DA42A2642B91DE14002E15D8 /* servers.plist */,
+				DAA717A52B907A1E00BFE363 /* TodoListApp.entitlements */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -164,6 +172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA7150302B921D5500813F34 /* ItemTableCellView.xib in Resources */,
 				DAA7179E2B907A1E00BFE363 /* Assets.xcassets in Resources */,
 				DA42A2652B91DE14002E15D8 /* servers.plist in Resources */,
 				DAA7179C2B907A1D00BFE363 /* Document.xib in Resources */,
@@ -183,6 +192,7 @@
 				DAA717992B907A1D00BFE363 /* Document.m in Sources */,
 				DAA717A42B907A1E00BFE363 /* main.m in Sources */,
 				DAA717962B907A1D00BFE363 /* AppDelegate.m in Sources */,
+				DA71502F2B921D5500813F34 /* ItemTableCellView.m in Sources */,
 				DAA717AD2B9085F100BFE363 /* WebApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

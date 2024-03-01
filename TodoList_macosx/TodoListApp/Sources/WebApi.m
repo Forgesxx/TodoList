@@ -7,6 +7,7 @@
 
 #import "WebApi.h"
 #import "Preferences.h"
+#import "Item.h"
 
 static NSString *const kGetAllItemsURI =    @"getAllItems";
 static NSString *const kAddItemURI =        @"addItem";
@@ -64,7 +65,7 @@ static NSString *const kDeleteItemURI =     @"deleteItem";
             {
                 NSError *err = nil;
                 allItems = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-                NSLog(@"response: %@", allItems);
+//                NSLog(@"response: %@", allItems);
             }
             completionHandler(allItems, nil);
         }];
@@ -74,6 +75,20 @@ static NSString *const kDeleteItemURI =     @"deleteItem";
 //                     nil];
 //NSData *postData = [NSJSONSerialization dataWithJSONObject:mapData options:0 error:&error];
 //[request setHTTPBody:postData];
+}
+
+- (void)setItem:(Item *)anItem withCompletionHandler:(void (^)(NSError * _Nullable error))completionHandler
+{
+    NSArray *itemArray = [NSArray arrayWithObject:anItem.dictionaryRepresentation];
+
+    NSError *error = nil;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:itemArray options:0 error:&error];
+
+    [self makePostRequest:kSetItemURI data:postData completionHandler:
+        ^(NSData * _Nullable data, NSError * _Nullable error)
+        {
+            completionHandler(error);
+        }];
 }
 
 #pragma mark -
@@ -95,10 +110,6 @@ static NSString *const kDeleteItemURI =     @"deleteItem";
     {
         [request setHTTPBody:aData];
     }
-//    NSDictionary *mapData = [[NSDictionary alloc] initWithObjectsAndKeys: @"TEST IOS", @"name",
-//                     @"IOS TYPE", @"typemap",
-//                     nil];
-//NSData *postData = [NSJSONSerialization dataWithJSONObject:mapData options:0 error:&error];
 
     NSURLSessionDataTask *postDataTask = [self.session dataTaskWithRequest:request completionHandler:
         ^(NSData *data, NSURLResponse *response, NSError *error)

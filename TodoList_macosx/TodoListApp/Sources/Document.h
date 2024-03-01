@@ -7,7 +7,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface Document : NSDocument<NSURLSessionDelegate>
+#import "ItemTableCellView.h"
+
+@interface Document : NSDocument<
+    NSURLSessionDelegate,
+    ItemTableCellViewDelegate>
 
 
 @end

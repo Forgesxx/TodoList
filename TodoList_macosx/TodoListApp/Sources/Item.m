@@ -18,9 +18,26 @@ static NSString *const kItemText = @"item";
 
 @implementation Item
 
++ (Item *)emptyItem
+{
+    return [[Item alloc] init];
+}
+
 + (Item *)itemWithDictionary:(NSDictionary *)aDictionary
 {
     return [[Item alloc] initWithDictionary:aDictionary];
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.mutableDictionaryRepresentation = [NSMutableDictionary dictionary];
+//        self.text = @"<Add text here....>";
+        self.text = @"";
+    }
+    return self;
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)aDictionary
@@ -33,9 +50,28 @@ static NSString *const kItemText = @"item";
     return self;
 }
 
+- (BOOL)isEqual:(id)other
+{
+    if ([other isKindOfClass:[Item class]])
+    {
+        Item *item = (Item *)other;
+        return self.itemId == item.itemId &&
+            self.text == item.text;
+    }
+    return NO;
+}
+
+#pragma mark -
+
 - (NSInteger)itemId
 {
-    return [[self.mutableDictionaryRepresentation objectForKey:kItemId] intValue];
+    NSInteger result = NSNotFound;
+    NSNumber *number = [self.mutableDictionaryRepresentation objectForKey:kItemId];
+    if (number)
+    {
+        result = number.intValue;
+    }
+    return result;
 }
 
 - (NSString *)text

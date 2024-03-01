@@ -64,17 +64,11 @@ static NSString *const kDeleteItemURI =     @"deleteItem";
             if (data)
             {
                 NSError *err = nil;
-                allItems = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-//                NSLog(@"response: %@", allItems);
+                allItems = [NSJSONSerialization JSONObjectWithData:data
+                    options:kNilOptions error:&err];
             }
             completionHandler(allItems, nil);
         }];
-
-//    NSDictionary *mapData = [[NSDictionary alloc] initWithObjectsAndKeys: @"TEST IOS", @"name",
-//                     @"IOS TYPE", @"typemap",
-//                     nil];
-//NSData *postData = [NSJSONSerialization dataWithJSONObject:mapData options:0 error:&error];
-//[request setHTTPBody:postData];
 }
 
 - (void)setItem:(Item *)anItem withCompletionHandler:(void (^)(NSError * _Nullable error))completionHandler
@@ -85,6 +79,20 @@ static NSString *const kDeleteItemURI =     @"deleteItem";
     NSData *postData = [NSJSONSerialization dataWithJSONObject:itemArray options:0 error:&error];
 
     [self makePostRequest:kSetItemURI data:postData completionHandler:
+        ^(NSData * _Nullable data, NSError * _Nullable error)
+        {
+            completionHandler(error);
+        }];
+}
+
+- (void)addItem:(Item *)anItem withCompletionHandler:(void (^)(NSError * _Nullable error))completionHandler
+{
+    NSArray *itemArray = [NSArray arrayWithObject:anItem.text];
+
+    NSError *error = nil;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:itemArray options:0 error:&error];
+
+    [self makePostRequest:kAddItemURI data:postData completionHandler:
         ^(NSData * _Nullable data, NSError * _Nullable error)
         {
             completionHandler(error);

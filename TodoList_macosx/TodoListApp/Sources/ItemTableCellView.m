@@ -26,7 +26,6 @@
     }
     else
     {
-
         if (!self.isEditing)
         {
             self.item.text = anItem.text;
@@ -43,9 +42,13 @@
 - (void)controlTextDidEndEditing:(NSNotification *)obj
 {
     self.isEditing = NO;
-    self.item.text = self.textField.stringValue;
-    [self.delegate itemDidChange:self.item];
-    NSLog(@"text did end edit");
+
+    if (![self.textField.stringValue isEqualToString:self.item.text])
+    {
+        self.item.text = self.textField.stringValue;
+        [self.delegate itemDidChange:self.item];
+        NSLog(@"text did end edit");
+    }
 }
 
 

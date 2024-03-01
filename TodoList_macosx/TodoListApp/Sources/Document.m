@@ -16,6 +16,7 @@
 @property (strong) IBOutlet NSTableView *allItemsTable;
 
 @property (readwrite) NSArray *allItems;
+@property (readwrite) NSArray *allItemsItems;
 @property (strong) NSMutableArray *allItemViews;
 
 @property (strong) NSTimer *updateTimer;
@@ -105,6 +106,18 @@
     if (![allItems isEqualToArray:anAllItems])
     {
         allItems = anAllItems;
+
+        NSMutableArray *mutableItems = [NSMutableArray array];
+        for (NSDictionary *itemDictionary in allItems)
+        {
+            Item *item = [Item itemWithDictionary:itemDictionary];
+            [mutableItems addObject:item];
+        }
+
+        [mutableItems addObject:[Item emptyItem]];
+
+        self.allItemsItems = mutableItems;
+
         [self updateTable];
     }
 }
@@ -125,14 +138,14 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView NS_SWIFT_UI_ACTOR
 {
-    return [self.allItems count];
+    return [self.allItemsItems count];
 }
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row
 {
     ItemTableCellView *tableCellView = nil;
 
-    Item *item = [Item itemWithDictionary:[self.allItems objectAtIndex:row]];
+    Item *item = [self.allItemsItems objectAtIndex:row];
 
     if (row < self.allItemViews.count)
     {
@@ -154,14 +167,26 @@
 
 - (void)itemDidChange:(Item *)anItem
 {
-    [WebApi.shared setItem:anItem withCompletionHandler:
-        ^(NSError * _Nullable error)
-        {
-            if (error)
+    if (anItem.itemId == NSNotFound)
+    {
+        [WebApi.shared addItem:anItem withCompletionHandler:
+            ^(NSError * _Nullable error)
             {
                 //TODO: represent error
-            }
-        }];
+                [self updateItems];
+            }];
+    }
+    else
+    {
+        [WebApi.shared setItem:anItem withCompletionHandler:
+            ^(NSError * _Nullable error)
+            {
+                if (error)
+                {
+                    //TODO: represent error
+                }
+            }];
+    }
 }
 
 @end

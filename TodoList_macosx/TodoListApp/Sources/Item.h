@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Item : NSObject
 
++ (Item *)emptyItem;
 + (Item *)itemWithDictionary:(NSDictionary *)aDictionary;
 
 @property (readonly) NSInteger itemId;

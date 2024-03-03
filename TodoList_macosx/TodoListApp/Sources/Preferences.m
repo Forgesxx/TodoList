@@ -30,9 +30,18 @@ static NSString * const kUpdateInterval = @"updateInterval";
     dispatch_once(&onceToken,
     ^{
         sharedController = [[Preferences alloc] init];
-        [sharedController loadResources];
     });
     return sharedController;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        [self loadResources];
+    }
+    return self;
 }
 
 - (void)loadResources

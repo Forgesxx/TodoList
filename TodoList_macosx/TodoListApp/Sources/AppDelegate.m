@@ -6,26 +6,31 @@
 //
 
 #import "AppDelegate.h"
-
+#import "PreferencesWindowController.h"
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+
 }
 
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
 }
 
-
-- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app {
+- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app
+{
     return YES;
 }
 
+- (IBAction)showPreferences:(id)sender
+{
+    [[PreferencesWindowController sharedController] showWindow:self];
+}
 
 @end

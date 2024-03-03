@@ -77,9 +77,21 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		DA71503F2B9474F400813F34 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				DA7150382B94668D00813F34 /* PreferencesGeneralTabView.h */,
+				DA7150392B94668D00813F34 /* PreferencesGeneralTabView.m */,
+				DA71503A2B94668D00813F34 /* PreferencesWindowController.h */,
+				DA71503B2B94668D00813F34 /* PreferencesWindowController.m */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
 		DA9AD17F2B90DB6B000DF49F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DA71503F2B9474F400813F34 /* Preferences */,
 				DA71503E2B9474BC00813F34 /* Common */,
 				DAA717942B907A1D00BFE363 /* AppDelegate.h */,
 				DAA717952B907A1D00BFE363 /* AppDelegate.m */,
@@ -90,10 +102,6 @@
 				DA71502C2B921D5500813F34 /* ItemTableCellView.h */,
 				DA71502D2B921D5500813F34 /* ItemTableCellView.m */,
 				DAA717A32B907A1E00BFE363 /* main.m */,
-				DA7150382B94668D00813F34 /* PreferencesGeneralTabView.h */,
-				DA7150392B94668D00813F34 /* PreferencesGeneralTabView.m */,
-				DA71503A2B94668D00813F34 /* PreferencesWindowController.h */,
-				DA71503B2B94668D00813F34 /* PreferencesWindowController.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";

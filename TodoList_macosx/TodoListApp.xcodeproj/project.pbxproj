@@ -16,6 +16,8 @@
 		DA7150372B94645400813F34 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA7150352B94645400813F34 /* PreferencesWindow.xib */; };
 		DA71503C2B94668D00813F34 /* PreferencesGeneralTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7150392B94668D00813F34 /* PreferencesGeneralTabView.m */; };
 		DA71503D2B94668D00813F34 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71503B2B94668D00813F34 /* PreferencesWindowController.m */; };
+		DA7150432B947C7D00813F34 /* ListWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7150412B947C7D00813F34 /* ListWindow.m */; };
+		DA7150442B947C7D00813F34 /* ListWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA7150422B947C7D00813F34 /* ListWindow.xib */; };
 		DAA717962B907A1D00BFE363 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717952B907A1D00BFE363 /* AppDelegate.m */; };
 		DAA717992B907A1D00BFE363 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717982B907A1D00BFE363 /* Document.m */; };
 		DAA7179C2B907A1D00BFE363 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA7179A2B907A1D00BFE363 /* Document.xib */; };
@@ -40,6 +42,9 @@
 		DA7150392B94668D00813F34 /* PreferencesGeneralTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesGeneralTabView.m; sourceTree = "<group>"; };
 		DA71503A2B94668D00813F34 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		DA71503B2B94668D00813F34 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
+		DA7150402B947C7D00813F34 /* ListWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListWindow.h; sourceTree = "<group>"; };
+		DA7150412B947C7D00813F34 /* ListWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListWindow.m; sourceTree = "<group>"; };
+		DA7150422B947C7D00813F34 /* ListWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListWindow.xib; sourceTree = "<group>"; };
 		DAA717912B907A1D00BFE363 /* TodoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA717942B907A1D00BFE363 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DAA717952B907A1D00BFE363 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -102,6 +107,8 @@
 				DA71502C2B921D5500813F34 /* ItemTableCellView.h */,
 				DA71502D2B921D5500813F34 /* ItemTableCellView.m */,
 				DAA717A32B907A1E00BFE363 /* main.m */,
+				DA7150402B947C7D00813F34 /* ListWindow.h */,
+				DA7150412B947C7D00813F34 /* ListWindow.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -109,13 +116,14 @@
 		DA9AD1802B90DB89000DF49F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DA7150342B94645400813F34 /* PreferencesGeneralTabView.xib */,
-				DA7150352B94645400813F34 /* PreferencesWindow.xib */,
 				DAA7179D2B907A1E00BFE363 /* Assets.xcassets */,
 				DAA7179A2B907A1D00BFE363 /* Document.xib */,
 				DAA717A22B907A1E00BFE363 /* Info.plist */,
 				DA71502E2B921D5500813F34 /* ItemTableCellView.xib */,
+				DA7150422B947C7D00813F34 /* ListWindow.xib */,
 				DAA7179F2B907A1E00BFE363 /* MainMenu.xib */,
+				DA7150342B94645400813F34 /* PreferencesGeneralTabView.xib */,
+				DA7150352B94645400813F34 /* PreferencesWindow.xib */,
 				DA42A2642B91DE14002E15D8 /* servers.plist */,
 				DAA717A52B907A1E00BFE363 /* TodoListApp.entitlements */,
 			);
@@ -207,6 +215,7 @@
 				DA7150302B921D5500813F34 /* ItemTableCellView.xib in Resources */,
 				DA7150372B94645400813F34 /* PreferencesWindow.xib in Resources */,
 				DAA7179E2B907A1E00BFE363 /* Assets.xcassets in Resources */,
+				DA7150442B947C7D00813F34 /* ListWindow.xib in Resources */,
 				DA7150362B94645400813F34 /* PreferencesGeneralTabView.xib in Resources */,
 				DA42A2652B91DE14002E15D8 /* servers.plist in Resources */,
 				DAA7179C2B907A1D00BFE363 /* Document.xib in Resources */,
@@ -228,6 +237,7 @@
 				DAA717A42B907A1E00BFE363 /* main.m in Sources */,
 				DAA717962B907A1D00BFE363 /* AppDelegate.m in Sources */,
 				DA71502F2B921D5500813F34 /* ItemTableCellView.m in Sources */,
+				DA7150432B947C7D00813F34 /* ListWindow.m in Sources */,
 				DA71503D2B94668D00813F34 /* PreferencesWindowController.m in Sources */,
 				DAA717AD2B9085F100BFE363 /* WebApi.m in Sources */,
 			);

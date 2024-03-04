@@ -65,8 +65,6 @@
 
 - (void)awakeFromNib
 {
-    [self.allItemsTable registerNib:[[NSNib alloc] initWithNibNamed:@"ItemTableCellView"
-        bundle:[NSBundle mainBundle]] forIdentifier:@"item"];
     [self updateItems];
 
     self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:[Preferences shared].updateInterval
@@ -141,27 +139,21 @@
     return [self.allItemsItems count];
 }
 
-- (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row
+- (nullable id)tableView:(NSTableView *)tableView objectValueForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    ItemTableCellView *tableCellView = nil;
-
     Item *item = [self.allItemsItems objectAtIndex:row];
-
-    if (row < self.allItemViews.count)
-    {
-        tableCellView = [self.allItemViews objectAtIndex:row];
-    }
-    else
-    {
-        tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
-        tableCellView.delegate = self;
-        [self.allItemViews addObject:tableCellView];
-    }
-
-    [tableCellView representItem:item];
-
-    return tableCellView;
+    NSString *text = item.text;
+    return text;
 }
+
+- (void)tableView:(NSTableView *)tableView setObjectValue:(nullable id)object forTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    Item *item = [self.allItemsItems objectAtIndex:row];
+    NSString *newString = (NSString *)object;
+    item.text = newString;
+    [self itemDidChange:item];
+}
+
 
 #pragma mark -
 
@@ -188,5 +180,33 @@
             }];
     }
 }
+
+- (IBAction)delete:(nullable id)sender
+{
+    NSIndexSet *selectedIndexes = self.allItemsTable.selectedRowIndexes;
+
+    NSMutableArray *indexesArray = [NSMutableArray array];
+
+    [selectedIndexes enumerateIndexesUsingBlock:
+        ^(NSUInteger idx, BOOL * _Nonnull stop)
+        {
+            Item *item = [self.allItemsItems objectAtIndex:idx];
+            if (item.itemId != NSNotFound)
+            {
+                [indexesArray addObject:[NSNumber numberWithInteger:item.itemId]];
+            }
+        }];
+
+    if (indexesArray.count)
+    {
+        [WebApi.shared deleteItems:indexesArray withCompletionHandler:
+            ^(NSError * _Nullable error)
+            {
+                //TODO: represent error
+                [self updateItems];
+        }];
+    }
+}
+
 
 @end

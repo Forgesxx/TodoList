@@ -99,6 +99,18 @@ static NSString *const kDeleteItemURI =     @"deleteItem";
         }];
 }
 
+- (void)deleteItems:(NSArray *)indexesArray withCompletionHandler:(void (^)(NSError * _Nullable error))completionHandler;
+{
+    NSError *error = nil;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:indexesArray options:0 error:&error];
+
+    [self makePostRequest:kDeleteItemURI data:postData completionHandler:
+        ^(NSData * _Nullable data, NSError * _Nullable error)
+        {
+            completionHandler(error);
+        }];
+}
+
 #pragma mark -
 
 - (void)makePostRequest:(NSString *)anURI data:(NSData *)aData completionHandler:(void (^)(NSData * _Nullable data, NSError * _Nullable error))completionHandler

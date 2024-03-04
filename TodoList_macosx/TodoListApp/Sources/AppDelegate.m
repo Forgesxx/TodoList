@@ -7,7 +7,10 @@
 
 #import "AppDelegate.h"
 #import "PreferencesWindowController.h"
+
 @interface AppDelegate ()
+
+
 
 @end
 
@@ -31,6 +34,11 @@
 - (IBAction)showPreferences:(id)sender
 {
     [[PreferencesWindowController sharedController] showWindow:self];
+}
+
+- (IBAction)showList:(id)sender
+{
+
 }
 
 @end

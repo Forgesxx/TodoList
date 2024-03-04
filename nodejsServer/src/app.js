@@ -8,6 +8,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use(express.static('../WebToDoList/todolistweb/build'));
+
 app.post(apiURIs.getAllItems,
     async (req, res) =>
     {
@@ -117,10 +119,10 @@ app.post(apiURIs.deleteItem,
         }
     });
 
-app.get('/',
-    (req, res) =>
-    {
-        res.status(200).send('Hello, world!').end();
-    });
+// app.get('/',
+//     (req, res) =>
+//     {
+//         res.status(200).send('Hello, world!').end();
+//     });
 
 module.exports = app;

@@ -4,7 +4,7 @@ import ApiService from './apiServise';
 function DataBaseContent()
 {
     const [items, setItems,] = useState([]);
-    const apiService = new ApiService('http://192.168.0.156:8080');
+    const apiService = new ApiService('');
 
     useEffect(() =>
     {

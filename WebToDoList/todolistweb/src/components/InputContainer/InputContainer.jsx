@@ -13,7 +13,7 @@ export default function InputContainer({ updateItemList, })
         {
             if (inputText.trim() === '')
             {
-                alert('Введите текст перед отправкой');
+                alert('Enter text before sending');
                 return;
             }
 
@@ -27,7 +27,7 @@ export default function InputContainer({ updateItemList, })
         }
         catch(error)
         {
-            console.error('Ошибка при добавлении элемента:', error);
+            console.error('Error when adding an item:', error);
         }
     };
 

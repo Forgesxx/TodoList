@@ -14,6 +14,7 @@
   flex-direction: column;
   align-items: center;
   padding-bottom: 80px;
+  width: 100%;
 }
 
 .InputContainer-wrapper {

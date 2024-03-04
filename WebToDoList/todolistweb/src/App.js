@@ -7,14 +7,11 @@ function App()
 {
     return (
         <div className="App">
-            <Header></Header>
+            <div className='HeaderContainer'><Header></Header></div>
             <div className="App-content">
                 <DataBaseContent/>
                 <header className="App-header">
                 </header>
-                <div className="InputContainer-wrapper">
-                    <InputContainer></InputContainer>
-                </div>
             </div>
         </div>
     );

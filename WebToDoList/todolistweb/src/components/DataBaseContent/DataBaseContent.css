@@ -21,3 +21,12 @@
     background-color: #fff;
     box-sizing: border-box;
 }
+
+  .fixed-bottom-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: #426ee9;
+}

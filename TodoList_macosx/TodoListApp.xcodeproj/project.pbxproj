@@ -1,0 +1,461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA42A2632B91DBF5002E15D8 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42A2622B91DBF5002E15D8 /* Preferences.m */; };
+		DA42A2652B91DE14002E15D8 /* servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA42A2642B91DE14002E15D8 /* servers.plist */; };
+		DA7150282B920CD100813F34 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7150272B920CD100813F34 /* Item.m */; };
+		DA71502F2B921D5500813F34 /* ItemTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71502D2B921D5500813F34 /* ItemTableCellView.m */; };
+		DA7150302B921D5500813F34 /* ItemTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA71502E2B921D5500813F34 /* ItemTableCellView.xib */; };
+		DA7150362B94645400813F34 /* PreferencesGeneralTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA7150342B94645400813F34 /* PreferencesGeneralTabView.xib */; };
+		DA7150372B94645400813F34 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA7150352B94645400813F34 /* PreferencesWindow.xib */; };
+		DA71503C2B94668D00813F34 /* PreferencesGeneralTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7150392B94668D00813F34 /* PreferencesGeneralTabView.m */; };
+		DA71503D2B94668D00813F34 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71503B2B94668D00813F34 /* PreferencesWindowController.m */; };
+		DA7150432B947C7D00813F34 /* ListWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7150412B947C7D00813F34 /* ListWindow.m */; };
+		DA7150442B947C7D00813F34 /* ListWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA7150422B947C7D00813F34 /* ListWindow.xib */; };
+		DAA717962B907A1D00BFE363 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717952B907A1D00BFE363 /* AppDelegate.m */; };
+		DAA717992B907A1D00BFE363 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717982B907A1D00BFE363 /* Document.m */; };
+		DAA7179C2B907A1D00BFE363 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA7179A2B907A1D00BFE363 /* Document.xib */; };
+		DAA7179E2B907A1E00BFE363 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA7179D2B907A1E00BFE363 /* Assets.xcassets */; };
+		DAA717A12B907A1E00BFE363 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA7179F2B907A1E00BFE363 /* MainMenu.xib */; };
+		DAA717A42B907A1E00BFE363 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717A32B907A1E00BFE363 /* main.m */; };
+		DAA717AD2B9085F100BFE363 /* WebApi.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA717AC2B9085F100BFE363 /* WebApi.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DA42A2612B91DBF5002E15D8 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
+		DA42A2622B91DBF5002E15D8 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
+		DA42A2642B91DE14002E15D8 /* servers.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = servers.plist; sourceTree = "<group>"; };
+		DA7150262B920CD100813F34 /* Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		DA7150272B920CD100813F34 /* Item.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		DA71502C2B921D5500813F34 /* ItemTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemTableCellView.h; sourceTree = "<group>"; };
+		DA71502D2B921D5500813F34 /* ItemTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemTableCellView.m; sourceTree = "<group>"; };
+		DA71502E2B921D5500813F34 /* ItemTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableCellView.xib; sourceTree = "<group>"; };
+		DA7150342B94645400813F34 /* PreferencesGeneralTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesGeneralTabView.xib; sourceTree = "<group>"; };
+		DA7150352B94645400813F34 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		DA7150382B94668D00813F34 /* PreferencesGeneralTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesGeneralTabView.h; sourceTree = "<group>"; };
+		DA7150392B94668D00813F34 /* PreferencesGeneralTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesGeneralTabView.m; sourceTree = "<group>"; };
+		DA71503A2B94668D00813F34 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
+		DA71503B2B94668D00813F34 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
+		DA7150402B947C7D00813F34 /* ListWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListWindow.h; sourceTree = "<group>"; };
+		DA7150412B947C7D00813F34 /* ListWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListWindow.m; sourceTree = "<group>"; };
+		DA7150422B947C7D00813F34 /* ListWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListWindow.xib; sourceTree = "<group>"; };
+		DAA717912B907A1D00BFE363 /* TodoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAA717942B907A1D00BFE363 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DAA717952B907A1D00BFE363 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DAA717972B907A1D00BFE363 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
+		DAA717982B907A1D00BFE363 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		DAA7179B2B907A1D00BFE363 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		DAA7179D2B907A1E00BFE363 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DAA717A02B907A1E00BFE363 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		DAA717A22B907A1E00BFE363 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAA717A32B907A1E00BFE363 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DAA717A52B907A1E00BFE363 /* TodoListApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodoListApp.entitlements; sourceTree = "<group>"; };
+		DAA717AB2B9085F100BFE363 /* WebApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebApi.h; sourceTree = "<group>"; };
+		DAA717AC2B9085F100BFE363 /* WebApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebApi.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAA7178E2B907A1D00BFE363 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DA71503E2B9474BC00813F34 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DAA717AB2B9085F100BFE363 /* WebApi.h */,
+				DAA717AC2B9085F100BFE363 /* WebApi.m */,
+				DA42A2612B91DBF5002E15D8 /* Preferences.h */,
+				DA42A2622B91DBF5002E15D8 /* Preferences.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DA71503F2B9474F400813F34 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				DA7150382B94668D00813F34 /* PreferencesGeneralTabView.h */,
+				DA7150392B94668D00813F34 /* PreferencesGeneralTabView.m */,
+				DA71503A2B94668D00813F34 /* PreferencesWindowController.h */,
+				DA71503B2B94668D00813F34 /* PreferencesWindowController.m */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		DA9AD17F2B90DB6B000DF49F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DA71503F2B9474F400813F34 /* Preferences */,
+				DA71503E2B9474BC00813F34 /* Common */,
+				DAA717942B907A1D00BFE363 /* AppDelegate.h */,
+				DAA717952B907A1D00BFE363 /* AppDelegate.m */,
+				DAA717972B907A1D00BFE363 /* Document.h */,
+				DAA717982B907A1D00BFE363 /* Document.m */,
+				DA7150262B920CD100813F34 /* Item.h */,
+				DA7150272B920CD100813F34 /* Item.m */,
+				DA71502C2B921D5500813F34 /* ItemTableCellView.h */,
+				DA71502D2B921D5500813F34 /* ItemTableCellView.m */,
+				DAA717A32B907A1E00BFE363 /* main.m */,
+				DA7150402B947C7D00813F34 /* ListWindow.h */,
+				DA7150412B947C7D00813F34 /* ListWindow.m */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		DA9AD1802B90DB89000DF49F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DAA7179D2B907A1E00BFE363 /* Assets.xcassets */,
+				DAA7179A2B907A1D00BFE363 /* Document.xib */,
+				DAA717A22B907A1E00BFE363 /* Info.plist */,
+				DA71502E2B921D5500813F34 /* ItemTableCellView.xib */,
+				DA7150422B947C7D00813F34 /* ListWindow.xib */,
+				DAA7179F2B907A1E00BFE363 /* MainMenu.xib */,
+				DA7150342B94645400813F34 /* PreferencesGeneralTabView.xib */,
+				DA7150352B94645400813F34 /* PreferencesWindow.xib */,
+				DA42A2642B91DE14002E15D8 /* servers.plist */,
+				DAA717A52B907A1E00BFE363 /* TodoListApp.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DAA717882B907A1D00BFE363 = {
+			isa = PBXGroup;
+			children = (
+				DAA717932B907A1D00BFE363 /* TodoListApp */,
+				DAA717922B907A1D00BFE363 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DAA717922B907A1D00BFE363 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAA717912B907A1D00BFE363 /* TodoListApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAA717932B907A1D00BFE363 /* TodoListApp */ = {
+			isa = PBXGroup;
+			children = (
+				DA9AD1802B90DB89000DF49F /* Resources */,
+				DA9AD17F2B90DB6B000DF49F /* Sources */,
+			);
+			path = TodoListApp;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAA717902B907A1D00BFE363 /* TodoListApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAA717A82B907A1E00BFE363 /* Build configuration list for PBXNativeTarget "TodoListApp" */;
+			buildPhases = (
+				DAA7178D2B907A1D00BFE363 /* Sources */,
+				DAA7178E2B907A1D00BFE363 /* Frameworks */,
+				DAA7178F2B907A1D00BFE363 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TodoListApp;
+			productName = TodoListApp;
+			productReference = DAA717912B907A1D00BFE363 /* TodoListApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAA717892B907A1D00BFE363 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					DAA717902B907A1D00BFE363 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+				};
+			};
+			buildConfigurationList = DAA7178C2B907A1D00BFE363 /* Build configuration list for PBXProject "TodoListApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DAA717882B907A1D00BFE363;
+			productRefGroup = DAA717922B907A1D00BFE363 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAA717902B907A1D00BFE363 /* TodoListApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAA7178F2B907A1D00BFE363 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA7150302B921D5500813F34 /* ItemTableCellView.xib in Resources */,
+				DA7150372B94645400813F34 /* PreferencesWindow.xib in Resources */,
+				DAA7179E2B907A1E00BFE363 /* Assets.xcassets in Resources */,
+				DA7150442B947C7D00813F34 /* ListWindow.xib in Resources */,
+				DA7150362B94645400813F34 /* PreferencesGeneralTabView.xib in Resources */,
+				DA42A2652B91DE14002E15D8 /* servers.plist in Resources */,
+				DAA7179C2B907A1D00BFE363 /* Document.xib in Resources */,
+				DAA717A12B907A1E00BFE363 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAA7178D2B907A1D00BFE363 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA71503C2B94668D00813F34 /* PreferencesGeneralTabView.m in Sources */,
+				DA7150282B920CD100813F34 /* Item.m in Sources */,
+				DA42A2632B91DBF5002E15D8 /* Preferences.m in Sources */,
+				DAA717992B907A1D00BFE363 /* Document.m in Sources */,
+				DAA717A42B907A1E00BFE363 /* main.m in Sources */,
+				DAA717962B907A1D00BFE363 /* AppDelegate.m in Sources */,
+				DA71502F2B921D5500813F34 /* ItemTableCellView.m in Sources */,
+				DA7150432B947C7D00813F34 /* ListWindow.m in Sources */,
+				DA71503D2B94668D00813F34 /* PreferencesWindowController.m in Sources */,
+				DAA717AD2B9085F100BFE363 /* WebApi.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DAA7179A2B907A1D00BFE363 /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAA7179B2B907A1D00BFE363 /* Base */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		DAA7179F2B907A1E00BFE363 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAA717A02B907A1E00BFE363 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DAA717A62B907A1E00BFE363 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DAA717A72B907A1E00BFE363 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DAA717A92B907A1E00BFE363 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/TodoListApp/Resources/TodoListApp.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QBPW9LPK8E;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TodoListApp/Resources/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.danilkorotenko.TodoListApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		DAA717AA2B907A1E00BFE363 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/TodoListApp/Resources/TodoListApp.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QBPW9LPK8E;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TodoListApp/Resources/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.danilkorotenko.TodoListApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAA7178C2B907A1D00BFE363 /* Build configuration list for PBXProject "TodoListApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAA717A62B907A1E00BFE363 /* Debug */,
+				DAA717A72B907A1E00BFE363 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAA717A82B907A1E00BFE363 /* Build configuration list for PBXNativeTarget "TodoListApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAA717A92B907A1E00BFE363 /* Debug */,
+				DAA717AA2B907A1E00BFE363 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DAA717892B907A1D00BFE363 /* Project object */;
+}

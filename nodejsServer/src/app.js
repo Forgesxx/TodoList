@@ -92,6 +92,7 @@ app.post(apiURIs.deleteItem,
         try
         {
             const itemIds = req.body;
+            console.log("Items to delete: " + JSON.stringify(itemIds));
             if (itemIds.length === 0)
             {
                 res.status(200).send();

@@ -1,19 +1,16 @@
 {
     "name": "node-js-server",
     "private": true,
-    "engines": 
-    {
+    "engines": {
         "node": ">=16.0.0"
     },
-    "scripts": 
-    {
+    "scripts": {
         "start": "node ./src/server.js",
         "startPort80": "PORT=80 node ./src/server.js",
         "startWithMemoryDB": "DB_NAME=:memory: node ./src/server.js",
         "test": "jest --runInBand"
     },
-    "dependencies": 
-    {
+    "dependencies": {
         "cors": "^2.8.5",
         "eslint": "^8.55.0",
         "eslint-config-semistandard": "^17.0.0",
@@ -24,9 +21,7 @@
         "express": "^4.17.1",
         "sqlite3": "^5.1.7"
     },
-    
-    "devDependencies": 
-    {
+    "devDependencies": {
         "c8": "^8.0.0",
         "jest": "^29.7.0",
         "nodemon": "^3.0.3",

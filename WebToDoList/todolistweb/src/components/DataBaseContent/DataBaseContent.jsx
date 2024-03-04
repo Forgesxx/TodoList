@@ -46,7 +46,7 @@ function DataBaseContent()
                         {item.item}
                         <div className="button-container">
                             <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
-                            <button>2</button>
+                            <button>Edit</button>
                         </div>
                     </div>
                 ))}

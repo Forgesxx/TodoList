@@ -29,7 +29,7 @@ const MainScreen = () =>
     const [error, setError,] = useState<Error | null>(null);
     const [originalItemText, setOriginalItemText,] = useState('');
 
-    const apiService = useMemo(() => new ApiService('http://192.168.0.156:8080'), []);
+    const apiService = useMemo(() => new ApiService(''), []);
 
     useEffect(() =>
     {

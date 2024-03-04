@@ -6,7 +6,7 @@ export default function InputContainer()
     return (
         <div className='input-container'>
             <input className='text-input' placeholder='Enter text'></input>
-            <button className='action-button'>Click</button>
+            <button className='action-button'>Add</button>
         </div>
     );
 }
